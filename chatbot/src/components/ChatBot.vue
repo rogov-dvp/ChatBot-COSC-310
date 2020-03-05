@@ -36,9 +36,9 @@
               class="ml-0"
               placeholder="Chat about SDLC (eg. 'agile')"
               outlined
-              v-model="message"
+              v-model="message"   
               v-on:keyup.enter="inputMessage"
-              ></v-text-field>
+              ></v-text-field> 
             </v-col>
             <v-col cols="2" class="flex-shrink-1">
               <v-btn 
@@ -70,13 +70,19 @@
     inputMessage: function() {
         if(this.message != '') {
             //Add user input
-            this.createNewElement('user-response', this.message);                
-            
+            this.createNewElement('user-response', this.message);
+            this.createEmptySpace('user-response');
             //TODO: add code for spliting words. Currently, it takes one key word
             let keyword = this.hashQuery(this.message);
+            this.createEmptySpace('chat-bot-response');
             this.createNewElement('chat-bot-response', keyword);                
             this.message = '';
         }
+    },
+    createEmptySpace(tagID) {
+      let newBr = document.createElement('br');
+      let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
+      dest.appendChild(newBr);
     },
     //Create a new element into DOM
     createNewElement: function(tagID, text) {
