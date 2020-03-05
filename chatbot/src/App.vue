@@ -3,7 +3,7 @@
     <v-content>
       <!--Navigation-->
       <v-row>
-          <Toolbar/>
+          <Header/>
       </v-row>
 
       <!--content-->
@@ -29,7 +29,7 @@ import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
 import LeftSide from './components/LeftSide';
 import RightSide from './components/RightSide';
-import Toolbar from './components/Toolbar';
+import Header from './components/Header';
 
 
 export default {
@@ -40,7 +40,7 @@ export default {
     Footer,
     LeftSide,
     RightSide,
-    Toolbar,
+    Header,
   },
 
   data: () => ({
