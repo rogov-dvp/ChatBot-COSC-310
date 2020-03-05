@@ -10,7 +10,7 @@
           </v-col>
         </v-row>
         <!--Messenging bubbles and text appears in this row-->
-          <v-row style="height: 400px;border: 1px solid black">
+          <v-row style="height: 400px;border: 1px solid #212121">
             <v-col>
               <div id="chat-bot-response" class="chatbot">
                   <h2>*Chatbot*</h2>
@@ -34,7 +34,7 @@
             <v-col cols="10" class="flex-grow-1 pl-0"> <!--label="Chat"-->
               <v-text-field
               class="ml-0"
-              placeholder="Chat about SDLC (eg. 'agile')"
+              placeholder="Chat about SDLC (eg. type: 'agile')"
               outlined
               v-model="message"   
               v-on:keyup.enter="inputMessage"
@@ -73,9 +73,11 @@
             this.createNewElement('user-response', this.message);
             this.createEmptySpace('user-response');
             //TODO: add code for spliting words. Currently, it takes one key word
-            let keyword = this.hashQuery(this.message);
+            let chatBotResponse = this.hashQuery(this.message);
+
+            //TODO: if key is not found return             
             this.createEmptySpace('chat-bot-response');
-            this.createNewElement('chat-bot-response', keyword);                
+            this.createNewElement('chat-bot-response', chatBotResponse);                
             this.message = '';
         }
     },
