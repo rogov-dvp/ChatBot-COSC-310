@@ -5,9 +5,12 @@
           
         <!--Chatbot icon and header messenging box-->
         <v-row>
-          <!-- <v-col> -->
-            <v-icon x-large>mdi-android</v-icon>
-          <!-- </v-col> -->
+          <v-col>
+            <v-icon x-large class="grey--text text--darken-4">adb</v-icon>
+          </v-col>
+          <v-col class="d-flex justify-end">
+            <v-icon x-large class="grey--text text--darken-4">person</v-icon>
+          </v-col>
         </v-row>
         <!--Messenging bubbles and text appears in this row-->
           <v-row style="height: 400px;border: 1px solid #212121">

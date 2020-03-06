@@ -12,7 +12,7 @@ export default {
   name: 'Header',
   data() {
       return{
-        icon: 'brightness_3', //spa,
+        icon: 'question_answer', //spa, brightness_3, question_answer, opacity
       }
   }
 }
