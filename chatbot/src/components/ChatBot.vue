@@ -2,7 +2,7 @@
   <div class="d-flex justify-between">
     <v-row class="">
       <v-col cols="12" >
-          
+          <p>testing git</p>
         <!--Chatbot icon and header messenging box-->
         <v-row>
           <v-col>
