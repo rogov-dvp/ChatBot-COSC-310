@@ -3,7 +3,7 @@
 Chatbot that discusses topics on Software Development Life Cycles.
 
 ## About the Chatbot
-This chatbot is developed in JavaScript!
+This chatbot is developed in JavaScript!!
 
 ### Why JavaScript 
 Due to the small enough scale of the project, writing it in JavaScript provides us to 
