@@ -174,7 +174,47 @@
             ht.add('vertical', 'Vertical SDLC is when....');
             ht.add('agile', 'Agile is a framework for quick iterations of ...')
             ht.add('fallwater', 'Double waterfall :)');
-            
+            ht.add ('Waterfall'.toLowerCase(),'Waterfall is a Software Development Life Cycle composed of phases that are based on each previous completed step.');
+            ht.add ('V-Shaped'.toLowerCase(),'V-shaped is a Software Development Life Cycle process where execuation is done in a "V" shape. In essence for every phase or step there is a directly associated testing phase.');
+            ht.add ('RAD'.toLowerCase(),'Rapid Application Development (RAD) has a quick turnaround time (~60 days) that heavily depends on code and screen generators, and other productivity tools. Users involved in all phases for feedback in planning and design.');
+            ht.add ('Scrum'.toLowerCase(),'Agile Scrum is a SDLC which accomplishes a develeopment project through breaking down tangable goals into "sprints" and daily 15 min meetings.');
+            ht.add ('Incremental'.toLowerCase(),'A SDLC system through repeated cycles (iterative) and in smaller portions at a time (incremental), allowing software developers to take advantage of what was learned during development of earlier parts or versions of the system');
+            ht.add ('Spiral'.toLowerCase(),'Spiral is a SDLC that adoptes different SDLC such as incremental, waterfall, or evolutionary prototyping.');
+            ht.add ('Extreme Programming'.toLowerCase(),'Extreme Programming is a Software Development Life Cycle that accomodates change as a natural process and emphasizes values and principles rather than process');
+            ht.add ('XP'.toLowerCase(),'XP (Extreme Programming) is a Software Development Life Cycle that accomodates change as a natural process and emphasizes values and principles rather than process');
+            ht.add ('Waterfall Benefits'.toLowerCase(),'The Waterfall SDLC is easy to plan since it has a linear-like development');
+            ht.add ('Waterfall Drawbacks'.toLowerCase(),'The Waterfall SDLC needs well understood and stable requirements upfront');
+            ht.add ('Waterfall features'.toLowerCase(),'Some features are linear development, easy to plan and staff, mistakes in previous phases are costly');
+            ht.add ('V-Shaped Benefits'.toLowerCase(),'The V-Shaped SDLC is good for systems requiring high reliability because of the emphasis on verification and validation');
+            ht.add ('V-Shaped Drawbacks'.toLowerCase(),'');
+            ht.add ('V-Shaped Features'.toLowerCase(),'');
+            ht.add ('RAD Benefits'.toLowerCase(),'The RAD SDLC has a quick turnaround time');
+            ht.add ('RAD Drawbacks'.toLowerCase(),'');
+            ht.add ('RAD Features'.toLowerCase(),'In the RAD SDLC, users are involved in all phases of development');
+            ht.add ('Scrum Benefits'.toLowerCase(),'The beauty with scrum is its flexibility with requirement changes, does not require PM, and minimal managements.');
+            ht.add ('Scrum Drawbacks'.toLowerCase(),'Some... troublesome.... issues are losing sight of scope creep,  difficult to schedule project completion, and difficult to integrate inexperience programmers. ');
+            ht.add ('Scrum Features'.toLowerCase(),'Some features are focusing a tangible goal, and sharing daily issues');
+            ht.add ('Incremental Benefits'.toLowerCase(),'Some cool benefits are creating working software early in development, easy to change requirements, and easier to test iterations');
+            ht.add ('Incremental Drawbacks'.toLowerCase(),'T+C45he Incremental SDLC does not allow iterations');
+            ht.add ('Incremental Features'.toLowerCase(),'Divide-and-conquer approach');
+            ht.add ('Spiral Benefits'.toLowerCase(),'Takes advantage of strengths from waterfall, prototyping, and incremental SDLCs');
+            ht.add ('Spiral Drawbacks'.toLowerCase(),'');
+            ht.add ('Spiral Features'.toLowerCase(),'Focuses on risk analysis and management. Best for project where requirements are too complex or evolving');
+            ht.add ('Extreme Programming Benefits'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
+            ht.add ('Extreme Programming Drawbacks'.toLowerCase(),'');
+            ht.add ('Extreme Programming Features'.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
+            ht.add ('XP Benefits'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
+            ht.add ('XP Drawbacks'.toLowerCase(),'');
+            ht.add ('XP Features'.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
+            ht.add ('SDLC'.toLowerCase(),'Software Development Life Cycle development (SDLC) is a process to divide software development work to improve desing, product management, and project management');
+            ht.add ('Hi'.toLowerCase(),'Hey, hi, hello');
+            ht.add ('How are you'.toLowerCase(),'I am good....How are you?');
+            ht.add ('Who are you'.toLowerCase(),'I am the all knowing, almighty Apurva Narayan');
+            ht.add ('Like'.toLowerCase(),'Uhhh... hehexd... I like monkeys, OH hey, I like you :)');
+            ht.add ('Love'.toLowerCase(),'I love COSC 310 :)');
+            ht.add (''.toLowerCase(),'');
+            ht.add ('hehexd','hehexd indeed!');
+
             //....add more hash elements\
             this.hashtable = ht;
 
