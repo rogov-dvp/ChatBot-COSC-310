@@ -37,7 +37,9 @@ At the very core, we implemented a hashmap in JavaScript (thanks to freeCodeCamp
 In regards to word search, we decided that we would have a bank of key words that would dictate the response of the chatbot based on
 matching key words. 
 
-We take the user input, seperate the words, and check if each word exists in the hashmap. If more than one matched key word exists, concatenate the words in alphabetica order. Once all words are check, take the concatenated string and search it up in the hashmap. Note, an issue is lots of data is required; However, the project is small enough to write this data and the topics are specific enough to acquire the general intent of the user response with a 1-3 words. If it no words are matched, there are multiple default sentences to use and guide the user into asking something the chatbot can response. Finally, we will add responses that are a bit more humane such as reponses in greetings, jokes, and farewells.
+We take the user input, seperate the words, and check if each word exists in the hashmap. If more than one matched key word exists, concatenate the words in alphabetica order. Once all words are check, take the concatenated string and search it up in the hashmap. You may note that the issue is requiring lots of data; However, the project is small and the topics are specific enough to acquire the general intent of the user response with searching upto 1-3 words. 
+
+If it no words are matched, there are multiple default sentences to use and guide the user into asking something the chatbot can response. Finally, we will add responses that are a bit more humane such as reponses in greetings, jokes, and farewells.
 
 ### Functions
 
