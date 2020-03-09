@@ -6,8 +6,7 @@ Chatbot Topic: **Software Development Life Cycle**
 Language: ``` JavaScript ```
 
 ### Why JavaScript 
-Due to the small enough scale of the project, writing it in JavaScript provides us to 
-establish a website to host our chatbot and develop an aesthetic UI with it; Meanwhile, we are still able to implement the same code we would have used in a programming language.
+JavaScript has enough to tools to build the same chatbot that we would have made with a programming langauge but with additional perks. Writing it in JavaScript provides us to easily integrate into a hosted website and develop an aesthetic UI.
 
 ### Input Examples:
 Try to ask these statements to chatbot!
@@ -30,13 +29,13 @@ The website is a single page application developed in Vue.js with a Vuetify(UI) 
 ### Backend 
 
 #### Search Methods
-At the very core, we implmeneted a HashTable in JavaScript (thanks to freeCodeCamp) that allows us to put and get data at O(1) time. 
+At the very core, we implemented a hashmap in JavaScript (thanks to freeCodeCamp) that allows us to put and get data at O(1) time. 
 
 #### Word Search
 In regards to word search, we decided that we would have a bank of key words that would dictate the response of the chatbot based on
 matching key words. 
 
-We take the user input, seperate the words, and check if each word exists in the HashTable. If more than one matched key word exists, concatenate the words in alphabetica order. Once all words are check, take the concatenated string and search it up in the HashTable. Note, an issue is lots of data is required; However, the project is small enough to write this data and the topics are specific enough to acquire the general intent of the user response with a 1-3 words. If it no words are matched, there are multiple default sentences to use and guide the user into asking something the chatbot can response. Finally, we will add responses that are a bit more humane such as reponses in greetings, jokes, and farewells.
+We take the user input, seperate the words, and check if each word exists in the hashmap. If more than one matched key word exists, concatenate the words in alphabetica order. Once all words are check, take the concatenated string and search it up in the hashmap. Note, an issue is lots of data is required; However, the project is small enough to write this data and the topics are specific enough to acquire the general intent of the user response with a 1-3 words. If it no words are matched, there are multiple default sentences to use and guide the user into asking something the chatbot can response. Finally, we will add responses that are a bit more humane such as reponses in greetings, jokes, and farewells.
 
 #### Functions:
 
