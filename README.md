@@ -49,6 +49,15 @@ Once the user types something in the search bar and presses the send button, the
 
 Google Firebase is currently hosting our [site](https://chatbot-310-app.firebaseapp.com/).
 
-Apart from hosting, Firebase includes other features such as a database. Cloud Firestore is a noSQL document based database and we could eventually move our data there. Future plans...
+Apart from hosting, Firebase includes other features such as a database. Cloud Firestore is a noSQL document based database and we could eventually move our data there.
+
+## About
+
+Devleoped By: *Alex Rogov, Paul Zapote, Kshitij Suri, Ahmad Jamal, Florencia Chomski*
+
+University of British Columbia | Software Engineering Course | 2020 Spring
+
+
+
 
 
