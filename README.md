@@ -8,7 +8,7 @@ Topic: **Software Development Life Cycle**
 Language: ``` JavaScript ```
 
 ### Why JavaScript 
-JavaScript has enough to tools to build the same chatbot that we would have made with a programming langauge but JavaScript has other extra useful ffeatures. For example, it allowed us to host our website and develop an aesthetic UI.
+JavaScript has enough to tools to build the same chatbot that we would have made with a programming langauge but JS also has other useful features. For example, it allowed us to host our website and were able to develop an aesthetic UI.
 
 ### Input Examples
 Try to ask these statements to our [chatbot](https://chatbot-310-app.firebaseapp.com/)
