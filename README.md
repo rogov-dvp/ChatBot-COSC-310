@@ -43,8 +43,6 @@ Here, we will be describing the process from when the user input their message t
 
 Once the user types something in the search bar and presses the send button, the first function is called. Here, a ```<li>``` is created with the text content being the user's input message and is printed in the messenging box. Next, the user's input is sent to be analyzed(see *Word Search* above). Once the matched or default response is selected, it becomes the text content of another ```<li>``` tag and placed into the messenging box.
 
-An interesting note, the spacing between the user and chatbot responses should be asynchronous and aligned left and right respectively.
-
 #### Hosting:
 
 Google Firebase is currently hosting our [site](https://chatbot-310-app.firebaseapp.com/).
