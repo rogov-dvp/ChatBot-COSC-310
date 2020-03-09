@@ -1,8 +1,6 @@
 
 # ChatBot-COSC-310
-Chatbot that discusses topics on Software Development Life Cycles.
 
-## About the Chatbot
 Chatbot Topic: **Software Development Life Cycle**
 
 Language: ``` JavaScript ```
