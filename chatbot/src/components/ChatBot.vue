@@ -2,7 +2,6 @@
   <div class="d-flex justify-between">
     <v-row class="">
       <v-col cols="12" >
-          
         <!--Chatbot icon and header messenging box-->
         <v-row>
           <v-col>
@@ -13,18 +12,11 @@
           </v-col>
         </v-row>
         <!--Messenging bubbles and text appears in this row-->
-          <v-row style="height: 400px;border: 1px solid #212121; overflow: auto;">
+          <v-row id="chatbox" style="height: 400px;border: 1px solid #212121; overflow: auto;">
             <v-col cols="12">
-              <div id="chat-bot-response" class="chatbot">
-                  <h2>*Chatbot*</h2>
+              <div id="responses">
                     <ul>
-                        <!--Chatbot outputs are render into here-->
-                    </ul>
-              </div>
-              <div id="user-response" class="user" style="text-align: right;">
-                  <h2>*User*</h2>
-                    <ul>
-                      <!--User input are render into here-->
+                        <!--Chatbot and users outputs are render into here-->
                     </ul>
               </div>
             </v-col>
@@ -65,9 +57,10 @@
     data() {
       return {
         message: '',
-        msg: [],
-        hashtable: '',
+        hashtableSDLC: '',
+        hashtableConv: '', 
         previousMsg: '',
+        defaultArray: [],
       } 
     },
     methods: {
@@ -76,9 +69,8 @@
         if(this.message != '') {
             let chatBotResponse = '';
             //Add user input
-            this.createNewElement('user-response', this.message);
-            this.createEmptySpace('user-response');
-            //TODO: add code for spliting words. Currently, it takes one key word
+            this.createNewElement('responses','right', this.message);
+
             if(this.previousMsg.localeCompare(this.message) == 0) {
               chatBotResponse = this.hashQuery('repeat');
             } else {
@@ -87,9 +79,11 @@
             chatBotResponse = this.hashQuery(keywords);
             }
 
-            //TODO: if key is not found return             
-            this.createEmptySpace('chat-bot-response');
-            this.createNewElement('chat-bot-response', chatBotResponse);                
+            this.createNewElement('responses','left', chatBotResponse);
+            //scroll to bottom if needed
+            let chatbox = document.getElementById('chatbox');
+            chatbox.scrollTop = chatbox.scrollHeight;
+            
             this.message = '';
         }
     },
@@ -99,29 +93,37 @@
       dest.appendChild(newBr);
     },
     //Create a new element into DOM
-    createNewElement: function(tagID, msg) {
+    createNewElement: function(tagID,align, msg) {
             let newLi = document.createElement('li');
             newLi.textContent = msg;
+            newLi.className = 'subtitle-1 font-weight-medium ma-2'
+            newLi.style.textAlign = align;
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
     },
     sentenceProcess: function(msg) {
-      let substringArr = msg.split(/\W+/);             //splits user's string into an array
+      let substringArr = msg.toLowerCase().split(/\W+/);             //splits user's string into an array
       substringArr.sort();                           //sort alphabetically
-      let strConcat = ''                             //Concatenated string
-      for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtable
+      let strConcat = '';                             //Concatenated string
+      for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
         if(this.hashQuery(substringArr[i]) != undefined) {    //if not undefined, concatenate
             strConcat = strConcat.concat(substringArr[i] + ' ');
-      console.log('split: ' + strConcat);
-        }      //  
+        }      
       }
-      strConcat = strConcat.trim();                         //trim ending space
+      strConcat = strConcat.trim();                         //trim ending space      
+
       console.log(strConcat);
       return strConcat;
     },
-    //Query through Hashtable
+    //Query through hashtableSDLC
     hashQuery: function(keyword) {
-        return this.hashtable.lookup(keyword);
+      if(this.hashtableSDLC.lookup(keyword) != null)
+        return this.hashtableSDLC.lookup(keyword);       // SDLC sentences
+      else if (this.hashtableConv.lookup(keyword) != null)
+        return this.hashtableConv.lookup(keyword);       // conversational sentences
+      else {
+        return this.defaultArray[Math.floor(Math.random() * this.defaultArray.length)]; // default sentences
+      }
     },
   },
     beforeMount: function() {
@@ -191,11 +193,11 @@
             };
         };
             
-            let ht = new HashTable(); 
-            //TODO: Add data here
+            let ht = new HashTable(); //SDLC hashtable instance
+            let ht2 = new HashTable();  //conversation hashtable instance
+            //SDLC Hashtable:
             ht.add('agile', 'Agile is a lightwork framework for quick iterations of sub-project. A very popular modern software development methodology')
             ht.add('fallwater', 'Double waterfall :)');
-
             ht.add('Waterfall'.toLowerCase(),'Waterfall is a Software Development Life Cycle composed of phases that are based on each previous completed step.');
             ht.add('V-Shaped'.toLowerCase(),'V-shaped is a Software Development Life Cycle process where execuation is done in a "V" shape. In essence for every phase or step there is a directly associated testing phase.');
             ht.add('RAD'.toLowerCase(),'Rapid Application Development (RAD) has a quick turnaround time (~60 days) that heavily depends on code and screen generators, and other productivity tools. Users involved in all phases for feedback in planning and design.');
@@ -222,55 +224,63 @@
             ht.add('Benefits Spiral'.toLowerCase(),'Takes advantage of strengths from waterfall, prototyping, and incremental SDLCs');
             ht.add('Drawbacks Spiral'.toLowerCase(),'');
             ht.add('Features Spiral'.toLowerCase(),'Focuses on risk analysis and management. Best for project where requirements are too complex or evolving');
-            ht.add('Benefits Extreme Programming '.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
-            ht.add('Drawbacks Extreme Programming '.toLowerCase(),'');
-            ht.add('Extreme Features Programming '.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
-            ht.add('Benefits XP '.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
-            ht.add('Drawbacks XP '.toLowerCase(),'');
+            ht.add('Benefits Extreme Programming'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
+            ht.add('Drawbacks Extreme Programming'.toLowerCase(),'');
+            ht.add('Extreme Features Programming'.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
+            ht.add('Benefits XP'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
+            ht.add('Drawbacks XP'.toLowerCase(),'');
             ht.add('Features XP'.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
             ht.add('SDLC'.toLowerCase(),'Software Development Life Cycle development (SDLC) is a process to divide software development work to improve desing, product management, and project management');
+
+            ht.add('benefits'.toLowerCase(),'sorry, benifits of what?');
+            ht.add('drawbacks'.toLowerCase(),'sorry, drawbacks of what?');
+            
             // Conversational
-            ht.add('Hi'.toLowerCase(),'Hi!');
-            ht.add('Hey'.toLowerCase(),'Hey there!');
-            ht.add('Hello'.toLowerCase(),'Hello m8, ask me some SDLC questions!');
-            ht.add('Bye'.toLowerCase(),'Chao, till next time!');
-            ht.add('thank you'.toLowerCase(),'No, thank you :-)');
-            ht.add('thank'.toLowerCase(),'\"Thank you, Thank you, Thank you very much\" - me the chatbot');
-            ht.add('thanks'.toLowerCase(),'No problem m8 <3');
+            ht2.add('Hi'.toLowerCase(),'Hi!');
+            ht2.add('Hey'.toLowerCase(),'Hey there!');
+            ht2.add('Hello'.toLowerCase(),'Hello, ask me some SDLC questions!');
+            ht2.add('Bye'.toLowerCase(),'Chao, till next time!');
+            ht2.add('thank you'.toLowerCase(),'No, thank you :-)');
+            ht2.add('thank'.toLowerCase(),'\"Thank you, Thank you, Thank you very much\" - me the chatbot');
+            ht2.add('thanks'.toLowerCase(),'No problem m8 <3');
 
-            ht.add('are who you'.toLowerCase(),'I am the all knowing, almighty Prof. Apurva Narayan');
-            ht.add('are how you'.toLowerCase(),'I am good....How are you?');
-            ht.add('are','Are is for Arrrr. gimme that looty');
-            ht.add('how','How did you even question that phrase? I don\'t get it');
-            ht.add('you','Did you know, YOU are awesome :)');
+            ht2.add('are who you'.toLowerCase(),'I am the all knowing, almighty Prof. Apurva Narayan');
+            ht2.add('are how you'.toLowerCase(),'I am good....How are you?');
+            ht2.add('are','ARrrr-don\'t understand');
+            ht2.add('how','How did you even question that phrase? I don\'t get it');
+            ht2.add('you','Did you know, YOU are awesome :)');
 
-            ht.add('Like'.toLowerCase(),'..beep-boop.., OH hello there, I like you :)');
-            ht.add('Love'.toLowerCase(),'I love COSC 310 :)');
-            ht.add(''.toLowerCase(),'');
-            ht.add('orc'.toLowerCase(),'ME ORC. ME ANGRY. RRRRrrrr');
-            ht.add('hehexd','hehe....xd ');
+            ht2.add('Like'.toLowerCase(),'..beep-boop.., you make me tinker my heart :)');
+            ht2.add('Love'.toLowerCase(),'I love COSC 310 :)');
+            ht2.add(''.toLowerCase(),'');
+            ht2.add('orc'.toLowerCase(),'ME ORC. ME ANGRY. RRRRrrrr');
+            ht2.add('hehexd','hehe....xd ');
+            
+            //Explicit/special case
+            ht.add('repeat','Are you a bot too? *Beep-Boop*');    
+            ht2.add('repeat','Are you a bot too? *Beep-Boop*');
 
-            ht.add('repeat','Are you a bot too? *Beep-Boop*');
+            //default statements
+            this.defaultArray.push('deafult, i love machine learning hehe');
+            this.defaultArray.push('default2');
+            this.defaultArray.push('default3');
+            this.defaultArray.push('default4');
 
+            console.log(this.defaultArray[0]);
 
             //....add more hash elements\
-            this.hashtable = ht;
+            this.hashtableSDLC = ht;
+            this.hashtableConv = ht2;
+
 
         },
+      pushDefault: function() {
+
+      }
     }
 </script>
 
 <style scoped>
-.chatbot {
-    width: 45%;
-    float: left;
-    margin-right: 5%;
-}
-.user {
-    width: 45%;
-    float: right;
-    margin-left: 5%;
-}
 ul {
   list-style: none;
 }
