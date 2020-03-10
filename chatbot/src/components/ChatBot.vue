@@ -70,27 +70,26 @@
             let chatBotResponse = '';
             //Add user input
             this.createNewElement('responses','right', this.message);
+            
+            //For repeated values
+            chatBotResponse = this.checkRepeat();
 
-            if(this.previousMsg.localeCompare(this.message) == 0) {
-              chatBotResponse = this.hashQuery('repeat');
-            } else {
-            this.previousMsg = this.message;
-            let keywords = this.sentenceProcess(this.message);
-            chatBotResponse = this.hashQuery(keywords);
-            }
-
-            this.createNewElement('responses','left', chatBotResponse);
             //scroll to bottom if needed
             let chatbox = document.getElementById('chatbox');
             chatbox.scrollTop = chatbox.scrollHeight;
             
+            this.createNewElement('responses','left', chatBotResponse);
             this.message = '';
         }
     },
-    createEmptySpace(tagID) {
-      let newBr = document.createElement('br');
-      let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
-      dest.appendChild(newBr);
+    checkRepeat: function() {
+      if(this.previousMsg.localeCompare(this.message) == 0) {
+        return this.hashQuery('repeat');
+      } else {
+      this.previousMsg = this.message;
+      let keywords = this.sentenceProcess(this.message);
+      return this.hashQuery(keywords);
+      }
     },
     //Create a new element into DOM
     createNewElement: function(tagID,align, msg) {
@@ -101,20 +100,25 @@
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
     },
+
     sentenceProcess: function(msg) {
       let substringArr = msg.toLowerCase().split(/\W+/);             //splits user's string into an array
+      console.log(substringArr);
       substringArr.sort();                           //sort alphabetically
       let strConcat = '';                             //Concatenated string
+
       for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
         if(this.hashQuery(substringArr[i]) != undefined) {    //if not undefined, concatenate
+            console.log(substringArr[i]);
             strConcat = strConcat.concat(substringArr[i] + ' ');
+            console.log('lookup: ' + this.hashQuery(substringArr[i]));
         }      
       }
       strConcat = strConcat.trim();                         //trim ending space      
-
       console.log(strConcat);
       return strConcat;
     },
+
     //Query through hashtableSDLC
     hashQuery: function(keyword) {
       if(this.hashtableSDLC.lookup(keyword) != null)
@@ -125,6 +129,13 @@
         return this.defaultArray[Math.floor(Math.random() * this.defaultArray.length)]; // default sentences
       }
     },
+      //     pushDefault: function() {
+      //       this.defaultArray.push('deafult, I love machine learning hehe');
+      //       this.defaultArray.push('default2');
+      //       this.defaultArray.push('default3');
+      //       this.defaultArray.push('default4');      
+      //       console.log(this.defaultArray[0]);
+      // }
   },
     beforeMount: function() {
                     /* Hash Table */
@@ -196,8 +207,8 @@
             let ht = new HashTable(); //SDLC hashtable instance
             let ht2 = new HashTable();  //conversation hashtable instance
             //SDLC Hashtable:
-            ht.add('agile', 'Agile is a lightwork framework for quick iterations of sub-project. A very popular modern software development methodology')
-            ht.add('fallwater', 'Double waterfall :)');
+            ht.add('agile'.toLowerCase(), 'Agile is a lightwork framework for quick iterations of sub-project. A very popular modern software development methodology')
+            ht.add('fallwater'.toLowerCase(), 'Double waterfall :)');
             ht.add('Waterfall'.toLowerCase(),'Waterfall is a Software Development Life Cycle composed of phases that are based on each previous completed step.');
             ht.add('V-Shaped'.toLowerCase(),'V-shaped is a Software Development Life Cycle process where execuation is done in a "V" shape. In essence for every phase or step there is a directly associated testing phase.');
             ht.add('RAD'.toLowerCase(),'Rapid Application Development (RAD) has a quick turnaround time (~60 days) that heavily depends on code and screen generators, and other productivity tools. Users involved in all phases for feedback in planning and design.');
@@ -243,6 +254,9 @@
             ht2.add('thank you'.toLowerCase(),'No, thank you :-)');
             ht2.add('thank'.toLowerCase(),'\"Thank you, Thank you, Thank you very much\" - me the chatbot');
             ht2.add('thanks'.toLowerCase(),'No problem m8 <3');
+            ht2.add('are good you'.toLowerCase(),'I\'m good at many things, so yes' );
+            ht2.add('good you'.toLowerCase(),'I\'m good, thank you');
+            ht2.add('good'.toLowerCase(),'Good, yes >:) very good');
 
             ht2.add('are who you'.toLowerCase(),'I am the all knowing, almighty Prof. Apurva Narayan');
             ht2.add('are how you'.toLowerCase(),'I am good....How are you?');
@@ -256,27 +270,15 @@
             ht2.add('orc'.toLowerCase(),'ME ORC. ME ANGRY. RRRRrrrr');
             ht2.add('hehexd','hehe....xd ');
             
-            //Explicit/special case
+            //Explicit/repeat case
             ht.add('repeat','Are you a bot too? *Beep-Boop*');    
             ht2.add('repeat','Are you a bot too? *Beep-Boop*');
-
-            //default statements
-            this.defaultArray.push('deafult, i love machine learning hehe');
-            this.defaultArray.push('default2');
-            this.defaultArray.push('default3');
-            this.defaultArray.push('default4');
-
-            console.log(this.defaultArray[0]);
 
             //....add more hash elements\
             this.hashtableSDLC = ht;
             this.hashtableConv = ht2;
 
-
-        },
-      pushDefault: function() {
-
-      }
+        }
     }
 </script>
 
