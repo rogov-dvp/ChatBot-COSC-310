@@ -1,5 +1,5 @@
 
-# ChatBot-COSC-310
+# ChatBot 
 
 Chatbot: https://chatbot-310-app.firebaseapp.com/
 
