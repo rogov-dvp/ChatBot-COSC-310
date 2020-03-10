@@ -65,6 +65,7 @@
     data() {
       return {
         message: '',
+        msg: [],
         hashtable: '',
       } 
     },
