@@ -108,10 +108,10 @@
       let strConcat = '';                             //Concatenated string
 
       for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
-        if(this.hashQuery(substringArr[i]) != undefined) {    //if not undefined, concatenate
+        if(this.hashtableSDLC.lookup(substringArr[i]) !== undefined) {    //if not undefined, concatenate
             console.log(substringArr[i]);
             strConcat = strConcat.concat(substringArr[i] + ' ');
-            console.log('lookup: ' + this.hashQuery(substringArr[i]));
+            console.log('lookup: ' + this.hashtableSDLC.lookup(substringArr[i]));
         }      
       }
       strConcat = strConcat.trim();                         //trim ending space      
@@ -129,13 +129,13 @@
         return this.defaultArray[Math.floor(Math.random() * this.defaultArray.length)]; // default sentences
       }
     },
-      //     pushDefault: function() {
-      //       this.defaultArray.push('deafult, I love machine learning hehe');
-      //       this.defaultArray.push('default2');
-      //       this.defaultArray.push('default3');
-      //       this.defaultArray.push('default4');      
-      //       console.log(this.defaultArray[0]);
-      // }
+          pushDefault: function() {
+            this.defaultArray.push('deafult, I love machine learning hehe');
+            this.defaultArray.push('default2');
+            this.defaultArray.push('default3');
+            this.defaultArray.push('default4');    
+            //TODO: More default sentences  
+      }
   },
     beforeMount: function() {
                     /* Hash Table */
@@ -277,7 +277,7 @@
             //....add more hash elements\
             this.hashtableSDLC = ht;
             this.hashtableConv = ht2;
-
+            this.pushDefault();
         }
     }
 </script>
