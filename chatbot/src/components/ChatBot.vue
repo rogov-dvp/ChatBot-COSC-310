@@ -67,19 +67,25 @@
         message: '',
         msg: [],
         hashtable: '',
+        previousMsg: '',
       } 
     },
     methods: {
         
     inputMessage: function() {
         if(this.message != '') {
+            let chatBotResponse = '';
             //Add user input
             this.createNewElement('user-response', this.message);
             this.createEmptySpace('user-response');
             //TODO: add code for spliting words. Currently, it takes one key word
-            
+            if(this.previousMsg.localeCompare(this.message) == 0) {
+              chatBotResponse = this.hashQuery('repeat');
+            } else {
+            this.previousMsg = this.message;
             let keywords = this.sentenceProcess(this.message);
-            let chatBotResponse = this.hashQuery(keywords);
+            chatBotResponse = this.hashQuery(keywords);
+            }
 
             //TODO: if key is not found return             
             this.createEmptySpace('chat-bot-response');
@@ -100,7 +106,7 @@
             dest.appendChild(newLi);
     },
     sentenceProcess: function(msg) {
-      let substringArr = msg.split(' ');             //splits user's string into an array
+      let substringArr = msg.split(/\W+/);             //splits user's string into an array
       substringArr.sort();                           //sort alphabetically
       let strConcat = ''                             //Concatenated string
       for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtable
@@ -243,6 +249,9 @@
             ht.add(''.toLowerCase(),'');
             ht.add('orc'.toLowerCase(),'ME ORC. ME ANGRY. RRRRrrrr');
             ht.add('hehexd','hehe....xd ');
+
+            ht.add('repeat','Are you a bot too? *Beep-Boop*');
+
 
             //....add more hash elements\
             this.hashtable = ht;
