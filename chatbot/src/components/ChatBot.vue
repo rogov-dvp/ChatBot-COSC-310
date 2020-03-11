@@ -82,15 +82,6 @@
             this.message = '';
         }
     },
-    checkRepeat: function() {
-      if(this.previousMsg.localeCompare(this.message) == 0) {
-        return this.hashQuery('repeat');
-      } else {
-      this.previousMsg = this.message;
-      let keywords = this.sentenceProcess(this.message);
-      return this.hashQuery(keywords);
-      }
-    },
     //Create a new element into DOM
     createNewElement: function(tagID,align, msg) {
             let newLi = document.createElement('li');
@@ -100,12 +91,21 @@
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
     },
-
+    checkRepeat: function() {
+      if(this.previousMsg.localeCompare(this.message) == 0) {
+        return this.hashQuery('repeat');
+      } else {
+      this.previousMsg = this.message;
+      let keywords = this.sentenceProcess(this.message);
+      
+      return this.hashQuery(keywords);
+      }
+    },
     sentenceProcess: function(msg) {
       let substringArr = msg.toLowerCase().split(/\W+/);             //splits user's string into an array
-      console.log(substringArr);
       substringArr.sort();                           //sort alphabetically
-      let strConcat = '';                             //Concatenated string
+      let strConcat = ' ';                             //Concatenated string SDLC
+      let strConcatConv = ' ';
 
       for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
         if(this.hashtableSDLC.lookup(substringArr[i]) !== undefined) {    //if not undefined, concatenate
@@ -114,28 +114,35 @@
             console.log('lookup: ' + this.hashtableSDLC.lookup(substringArr[i]));
         }      
       }
-      strConcat = strConcat.trim();                         //trim ending space      
-      console.log(strConcat);
-      return strConcat;
-    },
+        for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
+          if(this.hashtableConv.lookup(substringArr[i]) !== undefined) {    //if not undefined, concatenate
+            console.log(substringArr[i]);
+            strConcatConv = strConcatConv.concat(substringArr[i] + ' ');
+            console.log('lookup: ' + this.hashtableConv.lookup(substringArr[i]));
+        }      
+      }
+      strConcatConv = strConcatConv.trim();
+      strConcat = strConcat.trim();                         //trim ending space
 
+      if(strConcat != '')
+        return strConcat;
+      else 
+        return strConcatConv;
+      
+    },
     //Query through hashtableSDLC
     hashQuery: function(keyword) {
-      if(this.hashtableSDLC.lookup(keyword) != null)
+            console.log('query')
+      if(this.hashtableSDLC.lookup(keyword) != undefined)
         return this.hashtableSDLC.lookup(keyword);       // SDLC sentences
-      else if (this.hashtableConv.lookup(keyword) != null)
+
+      else if (this.hashtableConv.lookup(keyword) != undefined)
         return this.hashtableConv.lookup(keyword);       // conversational sentences
-      else {
+
+      else 
         return this.defaultArray[Math.floor(Math.random() * this.defaultArray.length)]; // default sentences
-      }
+      console.log('done')
     },
-          pushDefault: function() {
-            this.defaultArray.push('deafult, I love machine learning hehe');
-            this.defaultArray.push('default2');
-            this.defaultArray.push('default3');
-            this.defaultArray.push('default4');    
-            //TODO: More default sentences  
-      }
   },
     beforeMount: function() {
                     /* Hash Table */
@@ -251,12 +258,12 @@
             ht2.add('Hey'.toLowerCase(),'Hey there!');
             ht2.add('Hello'.toLowerCase(),'Hello, ask me some SDLC questions!');
             ht2.add('Bye'.toLowerCase(),'Chao, till next time!');
-            ht2.add('thank you'.toLowerCase(),'No, thank you :-)');
+            ht2.add('thank you'.toLowerCase(),'No, thank you');
             ht2.add('thank'.toLowerCase(),'\"Thank you, Thank you, Thank you very much\" - me the chatbot');
             ht2.add('thanks'.toLowerCase(),'No problem m8 <3');
-            ht2.add('are good you'.toLowerCase(),'I\'m good at many things, so yes' );
-            ht2.add('good you'.toLowerCase(),'I\'m good, thank you');
-            ht2.add('good'.toLowerCase(),'Good, yes >:) very good');
+            // ht2.add('are good you'.toLowerCase(),'I\'m good at many things, so yes' );
+            // ht2.add('good you'.toLowerCase(),'I\'m good, thank you');
+            // ht2.add('good'.toLowerCase(),'Good, yes >:) very good');
 
             ht2.add('are who you'.toLowerCase(),'I am the all knowing, almighty Prof. Apurva Narayan');
             ht2.add('are how you'.toLowerCase(),'I am good....How are you?');
@@ -266,7 +273,6 @@
 
             ht2.add('Like'.toLowerCase(),'..beep-boop.., you make me tinker my heart :)');
             ht2.add('Love'.toLowerCase(),'I love COSC 310 :)');
-            ht2.add(''.toLowerCase(),'');
             ht2.add('orc'.toLowerCase(),'ME ORC. ME ANGRY. RRRRrrrr');
             ht2.add('hehexd','hehe....xd ');
             
@@ -277,8 +283,14 @@
             //....add more hash elements\
             this.hashtableSDLC = ht;
             this.hashtableConv = ht2;
-            this.pushDefault();
-        }
+
+            //Defaults
+            this.defaultArray.push('Oi! SDLC related topic only please');
+            this.defaultArray.push('I love how the stars \'text-align: scatter;\' across the sky at night.');
+            this.defaultArray.push('Row row row, your boat gently down the stream. Merely merely, merely, life is but a dream.');
+            this.defaultArray.push('Choo Choo! train of understandance has left');    
+            //TODO: More default sentences  
+}
     }
 </script>
 
