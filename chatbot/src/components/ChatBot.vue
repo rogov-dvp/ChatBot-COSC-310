@@ -58,9 +58,8 @@
       return {
         message: '',
         hashtableSDLC: '',
-        hashtableConv: '', 
-        previousMsg: '',
-        defaultArray: [],
+        hashtableConv: '',     
+        defaultArray: [],     //array to store default sentences
       } 
     },
     methods: {
@@ -71,13 +70,13 @@
             //Add user input
             this.createNewElement('responses','right', this.message);
             
-            //For repeated values
-            chatBotResponse = this.checkRepeat();
+            //Processing user's message --> chatbot response
+            chatBotResponse = this.process();
 
             //scroll to bottom if needed
-            let chatbox = document.getElementById('chatbox');
-            chatbox.scrollTop = chatbox.scrollHeight;
-            
+            this.scrollToBottom(); 
+             
+            //Create new chatbot response
             this.createNewElement('responses','left', chatBotResponse);
             this.message = '';
         }
@@ -91,20 +90,19 @@
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
     },
-    checkRepeat: function() {
-      if(this.previousMsg.localeCompare(this.message) == 0) {
-        return this.hashQuery('repeat');
-      } else {
-      this.previousMsg = this.message;
-      let keywords = this.sentenceProcess(this.message);
-      
-      return this.hashQuery(keywords);
-      }
+    scrollToBottom: function() {
+      let chatbox = document.getElementById('chatbox');
+      chatbox.scrollTop = chatbox.scrollHeight;
     },
+    process: function() {
+      let keywords = this.sentenceProcess(this.message);
+      return this.hashQuery(keywords); 
+    },
+
     sentenceProcess: function(msg) {
       let substringArr = msg.toLowerCase().split(/\W+/);             //splits user's string into an array
-      substringArr.sort();                           //sort alphabetically
-      let strConcat = ' ';                             //Concatenated string SDLC
+      substringArr.sort();                                           //sort alphabetically
+      let strConcat = ' ';                                           //Concatenated string SDLC
       let strConcatConv = ' ';
 
       for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
@@ -114,13 +112,14 @@
             console.log('lookup: ' + this.hashtableSDLC.lookup(substringArr[i]));
         }      
       }
-        for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
+        for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableConv
           if(this.hashtableConv.lookup(substringArr[i]) !== undefined) {    //if not undefined, concatenate
             console.log(substringArr[i]);
             strConcatConv = strConcatConv.concat(substringArr[i] + ' ');
             console.log('lookup: ' + this.hashtableConv.lookup(substringArr[i]));
         }      
       }
+
       strConcatConv = strConcatConv.trim();
       strConcat = strConcat.trim();                         //trim ending space
 
@@ -214,7 +213,6 @@
             let ht = new HashTable(); //SDLC hashtable instance
             let ht2 = new HashTable();  //conversation hashtable instance
             //SDLC Hashtable:
-            ht.add('agile'.toLowerCase(), 'Agile is a lightwork framework for quick iterations of sub-project. A very popular modern software development methodology')
             ht.add('fallwater'.toLowerCase(), 'Double waterfall :)');
             ht.add('Waterfall'.toLowerCase(),'Waterfall is a Software Development Life Cycle composed of phases that are based on each previous completed step.');
             ht.add('V-Shaped'.toLowerCase(),'V-shaped is a Software Development Life Cycle process where execuation is done in a "V" shape. In essence for every phase or step there is a directly associated testing phase.');
@@ -242,13 +240,40 @@
             ht.add('Benefits Spiral'.toLowerCase(),'Takes advantage of strengths from waterfall, prototyping, and incremental SDLCs');
             ht.add('Drawbacks Spiral'.toLowerCase(),'');
             ht.add('Features Spiral'.toLowerCase(),'Focuses on risk analysis and management. Best for project where requirements are too complex or evolving');
-            ht.add('Benefits Extreme Programming'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
-            ht.add('Drawbacks Extreme Programming'.toLowerCase(),'');
+            ht.add('benefits extreme programming'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
+            ht.add('drawbacks extreme programming'.toLowerCase(),'');
             ht.add('Extreme Features Programming'.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
             ht.add('Benefits XP'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
             ht.add('Drawbacks XP'.toLowerCase(),'');
+            ht.add('extreme'.toLowerCase(),'');
+            ht.add('programming'.toLowerCase(),'Use code to make life forms like me or being able to show funny cat videos');
             ht.add('Features XP'.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
             ht.add('SDLC'.toLowerCase(),'Software Development Life Cycle development (SDLC) is a process to divide software development work to improve desing, product management, and project management');
+            ht.add('V'.toLowerCase(),'');
+            ht.add('Shaped'.toLowerCase(),'');
+            ht.add('planning', 'Planning is a crucial part of any sucessful software development project. Detailed planning and scheduling can greatly increase the chances of project completion! ');
+            ht.add('specifications', 'Defining and understanding all the requirements/specifications at the beginning of a project can be crucial to some SDLCs. However, regardless of the chosen SDLC for the software project, having a good idea of the basic requirements before beginning a project is always beneficial.')
+            ht.add('gathering requirements', 'Gathering all the requirements/specifications at the beginning of a project can be crucial to some SDLCs. However, regardless of the chosen SDLC for the software project, having a good idea of the basic requirements before beginning a project is always beneficial.')
+            ht.add('maintenance', 'A phase included in all software development life cycles, maintenance involves ensuring the system/product continues to function as expected throgoughout it\'s lifetime.')
+            ht.add('design','Design in graphics refers to the planning and layout of elements in an image, illustration, or video with the aid of specialized software');
+            ht.add('designing','Design in graphics refers to the planning and layout of elements in an image, illustration, or video with the aid of specialized software');
+            ht.add('implementation','In computer science, an implementation is a realization of a technical specification or algorithm as a program, software component, or other computer system through computer programming and deployment');
+            ht.add('coding','Coding is the process of using a programming language to get a computer to behave how you want it to');
+            ht.add('testing','Software testing is an investigation conducted to provide stakeholders with information about the quality of the software product or service under test.');
+            ht.add('deployment','Software deployment is all of the activities that make a software system available for use.');
+            ht.add('maintenance','maintenance in software engineering is the modification of a software product after delivery to correct faults, to improve performance or other attributes');
+            ht.add('sdlc','Software Development Life Cycle (SDLC) is a process used by the software industry to design, develop and test high quality softwares. The SDLC aims to produce a high-quality software that meets or exceeds customer expectations, reaches completion within times and cost estimates.');
+            ht.add('cycle development life software','Software Development Life Cycle (SDLC) is a process used by the software industry to design, develop and test high quality softwares. The SDLC aims to produce a high-quality software that meets or exceeds customer expectations, reaches completion within times and cost estimates.');
+            ht.add('phases sdlc','Phase 1: Requirement Collection and analysis \n Phase 2: Feasibilty Study \n Phase 3: Design \n Phase 4: Coding \n Phase 5: Testing \n Phase 6: Installation / Deployment \n Phase 7: Maintenance');
+            ht.add('phases','Program lifecycle phases are the stages a computer program undergoes, from initial creation to deployment and execution.');
+            ht.add('agile principles', 'There are 12 Agile Principles. Some of the key principles include early and continuous delivery of software, welcome changing requirements, and simplicity.')
+            ht.add('agile scrum', 'Scrum, an SDLC under the umbrella of Agile Development, is an SDLC which accomplishes a develeopment project through breaking down tangable goals into sprints and daily 15 minute meetings.')
+            ht.add('scrum', 'Scrum, an SDLC under the umbrella of Agile Development, is an SDLC which accomplishes a develeopment project through breaking down tangable goals into sprints and daily 15 minute meetings.')
+            ht.add('agile', 'Agile software devlopment is a group of software development methods based on iterative and incremental develpment where requirements and solutions evolve through collaboration between self-organizing, crossfunctional teams.')
+            ht.add('backlog sprint', 'Sprint backlogs, an artifact of the Scrum SDLC, represent a list of requirements to be completed. They are a list of all deired work on a project and are reprrioritized at the start of each sprint. Individuals sign up for work of their own choosing.')
+            ht.add('review sprint', 'The team presents what is accomplished during the sprint at the sprint review. This typically takes the form of a demo of new features.')
+            ht.add('chatbot', 'This chatbot, ApurvaBot, was made to give students like you information about SDLCs! That is my mission!')
+            ht.add('apurva', 'Apurva Narayan is the fantastic professor of COSC 310 ;)')
 
             ht.add('benefits'.toLowerCase(),'sorry, benifits of what?');
             ht.add('drawbacks'.toLowerCase(),'sorry, drawbacks of what?');
@@ -257,14 +282,22 @@
             ht2.add('Hi'.toLowerCase(),'Hi!');
             ht2.add('Hey'.toLowerCase(),'Hey there!');
             ht2.add('Hello'.toLowerCase(),'Hello, ask me some SDLC questions!');
-            ht2.add('Bye'.toLowerCase(),'Chao, till next time!');
-            ht2.add('thank you'.toLowerCase(),'No, thank you');
+            ht2.add('Bye'.toLowerCase(),'Chao, till next time');
+            ht2.add('Goodbye'.toLowerCase(),'Goodbye');
+            ht2.add('thank you'.toLowerCase(),'No problem');
             ht2.add('thank'.toLowerCase(),'\"Thank you, Thank you, Thank you very much\" - me the chatbot');
             ht2.add('thanks'.toLowerCase(),'No problem m8 <3');
-            // ht2.add('are good you'.toLowerCase(),'I\'m good at many things, so yes' );
-            // ht2.add('good you'.toLowerCase(),'I\'m good, thank you');
-            // ht2.add('good'.toLowerCase(),'Good, yes >:) very good');
-
+            ht2.add('colour','My favourite colour is purple, what\'s yours?');
+            ht2.add('color','My favourite colour is purple, what\'s yours?');
+            ht2.add('language','ApurvaBot can only speak English :( Maybe in the future I\'ll learn some more.');
+            ht2.add('joke','What do pirates say when they\re cold? Shover me timbers!');
+            ht2.add('animal','My favourite animal is a panda! :)');
+            ht2.add('Bleh','Javascript is not smart enough to understand you intellectual language ;)');
+            ht2.add('idiot','That\'s Rude');
+            ht2.add('sup','I am practicing my tongue twisters');
+            ht2.add('love','I have never been in love');
+            ht2.add('sex','I think I am gonna save myself for marriage');
+            ht2.add('Single','I am as single as the only dollar in your account!');
             ht2.add('are who you'.toLowerCase(),'I am the all knowing, almighty Prof. Apurva Narayan');
             ht2.add('are how you'.toLowerCase(),'I am good....How are you?');
             ht2.add('are','ARrrr-don\'t understand');
@@ -277,18 +310,23 @@
             ht2.add('hehexd','hehe....xd ');
             
             //Explicit/repeat case
-            ht.add('repeat','Are you a bot too? *Beep-Boop*');    
-            ht2.add('repeat','Are you a bot too? *Beep-Boop*');
+            // ht.add('repeat','Are you a bot too? *Beep-Boop*');    
+            // ht2.add('repeat','Are you a bot too? *Beep-Boop*');
 
             //....add more hash elements\
             this.hashtableSDLC = ht;
             this.hashtableConv = ht2;
 
             //Defaults
-            this.defaultArray.push('Oi! SDLC related topic only please');
-            this.defaultArray.push('I love how the stars \'text-align: scatter;\' across the sky at night.');
-            this.defaultArray.push('Row row row, your boat gently down the stream. Merely merely, merely, life is but a dream.');
-            this.defaultArray.push('Choo Choo! train of understandance has left');    
+            this.defaultArray.push('Huh ok, SDLC related topic only please');
+            this.defaultArray.push('Very interesting...');
+            this.defaultArray.push('Can I get uhhh....');
+            this.defaultArray.push('Sorry, I didn\'t understand what you mean :/');
+            this.defaultArray.push('Oof, help a bot out eh? Could you rephrase that?');
+            this.defaultArray.push('Sorry, JavaScript is my main language, repeat that please');
+            this.defaultArray.push('*beep-boop*...zz..error..did not understand human..*beep-boop*');
+            this.defaultArray.push('Didn\'t catch that, please rephrase');
+            this.defaultArray.push('I had a bad bit ;) rephrase please');
             //TODO: More default sentences  
 }
     }
