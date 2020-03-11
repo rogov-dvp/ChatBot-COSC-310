@@ -73,11 +73,12 @@
             //Processing user's message --> chatbot response
             chatBotResponse = this.process();
 
-            //scroll to bottom if needed
-            this.scrollToBottom(); 
              
             //Create new chatbot response
             this.createNewElement('responses','left', chatBotResponse);
+            
+            //scroll to bottom if needed
+            this.scrollToBottom(); 
             this.message = '';
         }
     },
@@ -274,6 +275,7 @@
             ht.add('review sprint', 'The team presents what is accomplished during the sprint at the sprint review. This typically takes the form of a demo of new features.')
             ht.add('chatbot', 'This chatbot, ApurvaBot, was made to give students like you information about SDLCs! That is my mission!')
             ht.add('apurva', 'Apurva Narayan is the fantastic professor of COSC 310 ;)')
+            ht.add('principles', 'Mains ideas that represent a methadology, in SDLC sense.')
 
             ht.add('benefits'.toLowerCase(),'sorry, benifits of what?');
             ht.add('drawbacks'.toLowerCase(),'sorry, drawbacks of what?');
@@ -303,7 +305,7 @@
             ht2.add('are','ARrrr-don\'t understand');
             ht2.add('how','How did you even question that phrase? I don\'t get it');
             ht2.add('you','Did you know, YOU are awesome :)');
-
+            ht2.add('who','I am the all knowing, almighty Prof. Apurva Narayan');
             ht2.add('Like'.toLowerCase(),'..beep-boop.., you make me tinker my heart :)');
             ht2.add('Love'.toLowerCase(),'I love COSC 310 :)');
             ht2.add('orc'.toLowerCase(),'ME ORC. ME ANGRY. RRRRrrrr');
