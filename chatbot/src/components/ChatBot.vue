@@ -56,9 +56,9 @@
     name: 'Chatbot',
     data() {
       return {
-        message: '',
-        hashtableSDLC: '',
-        hashtableConv: '',     
+        message: '',          //User's message
+        hashtableSDLC: '',    //hashtable instance for SDLC responses
+        hashtableConv: '',    //hashtable instance for conversational responses
         defaultArray: [],     //array to store default sentences
       } 
     },
@@ -68,34 +68,35 @@
         if(this.message != '') {
             let chatBotResponse = '';
             //Add user input
-            this.createNewElement('responses','right', this.message);
+            this.createNewElement('responses','right','100%', this.message);
             
             //Processing user's message --> chatbot response
             chatBotResponse = this.process();
 
              
             //Create new chatbot response
-            this.createNewElement('responses','left', chatBotResponse);
+            this.createNewElement('responses','left', '66%' , chatBotResponse);
             
             //scroll to bottom if needed
             this.scrollToBottom(); 
             this.message = '';
         }
     },
-    //Create a new element into DOM
-    createNewElement: function(tagID,align, msg) {
+    //Create a new element into DOM 
+    createNewElement: function(tagID,align,width, msg) {    //Creates new <li> element with appropriate class and styling
             let newLi = document.createElement('li');
             newLi.textContent = msg;
             newLi.className = 'subtitle-1 font-weight-medium ma-2'
             newLi.style.textAlign = align;
+            newLi.style.maxWidth = width;
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
     },
-    scrollToBottom: function() {
+    scrollToBottom: function() {      //scroll div to bottom
       let chatbox = document.getElementById('chatbox');
       chatbox.scrollTop = chatbox.scrollHeight;
     },
-    process: function() {
+    process: function() {     //process string and get appropriate chatbot response
       let keywords = this.sentenceProcess(this.message);
       return this.hashQuery(keywords); 
     },
@@ -104,16 +105,16 @@
       let substringArr = msg.toLowerCase().split(/\W+/);             //splits user's string into an array
       substringArr.sort();                                           //sort alphabetically
       let strConcat = ' ';                                           //Concatenated string SDLC
-      let strConcatConv = ' ';
+      let strConcatConv = ' ';                                       //Concatenated string Conversational
 
-      for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLCSDLC
+      for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableSDLC | Processes string within SDLC hashtable
         if(this.hashtableSDLC.lookup(substringArr[i]) !== undefined) {    //if not undefined, concatenate
             console.log(substringArr[i]);
             strConcat = strConcat.concat(substringArr[i] + ' ');
             console.log('lookup: ' + this.hashtableSDLC.lookup(substringArr[i]));
         }      
       }
-        for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableConv
+        for(let i = 0; i < substringArr.length; i++) { //for each word, look up into hashtableConv | Processes string within conversational hashtable
           if(this.hashtableConv.lookup(substringArr[i]) !== undefined) {    //if not undefined, concatenate
             console.log(substringArr[i]);
             strConcatConv = strConcatConv.concat(substringArr[i] + ' ');
@@ -124,23 +125,23 @@
       strConcatConv = strConcatConv.trim();
       strConcat = strConcat.trim();                         //trim ending space
 
-      if(strConcat != '')
-        return strConcat;
+      if(strConcat != '')   
+        return strConcat;       //Checks SDLC responses first
       else 
-        return strConcatConv;
+        return strConcatConv;   //If SLDC responses is empty, check conversational respones
       
     },
-    //Query through hashtableSDLC
+    //Query through hashtableSDLC: | First check if keywords exist in SDLC HashTable, then conversational hashtable, else give default sentence
     hashQuery: function(keyword) {
             console.log('query')
-      if(this.hashtableSDLC.lookup(keyword) != undefined)
-        return this.hashtableSDLC.lookup(keyword);       // SDLC sentences
+      if(this.hashtableSDLC.lookup(keyword) != undefined) 
+        return this.hashtableSDLC.lookup(keyword);       // SDLC responses
 
       else if (this.hashtableConv.lookup(keyword) != undefined)
-        return this.hashtableConv.lookup(keyword);       // conversational sentences
+        return this.hashtableConv.lookup(keyword);       // conversational responses
 
       else 
-        return this.defaultArray[Math.floor(Math.random() * this.defaultArray.length)]; // default sentences
+        return this.defaultArray[Math.floor(Math.random() * this.defaultArray.length)]; // default responses
       console.log('done')
     },
   },
@@ -184,19 +185,6 @@
             }
             };                
             
-            this.remove = function(key) {
-            var index = hash(key, storageLimit);
-            if (storage[index].length === 1 && storage[index][0][0] === key) {
-                delete storage[index];
-            } else {
-                for (var i = 0; i < storage[index].length; i++) {
-                if (storage[index][i][0] === key) {
-                    delete storage[index][i];
-                }
-                }
-            }
-            };
-        
             this.lookup = function(key) {
             var index = hash(key, storageLimit);
             if (storage[index] === undefined) {
@@ -213,7 +201,10 @@
             
             let ht = new HashTable(); //SDLC hashtable instance
             let ht2 = new HashTable();  //conversation hashtable instance
-            //SDLC Hashtable:
+            //SDLC Hashtable Data: 
+            /*
+              NOTE, WORDS IN KEYS ARE STORED ALPHABETICALLY. REQUIRED FOR DATA OUTPUT
+            */
             ht.add('fallwater'.toLowerCase(), 'Double waterfall :)');
             ht.add('Waterfall'.toLowerCase(),'Waterfall is a Software Development Life Cycle composed of phases that are based on each previous completed step.');
             ht.add('V-Shaped'.toLowerCase(),'V-shaped is a Software Development Life Cycle process where execuation is done in a "V" shape. In essence for every phase or step there is a directly associated testing phase.');
@@ -272,15 +263,25 @@
             ht.add('scrum', 'Scrum, an SDLC under the umbrella of Agile Development, is an SDLC which accomplishes a develeopment project through breaking down tangable goals into sprints and daily 15 minute meetings.')
             ht.add('agile', 'Agile software devlopment is a group of software development methods based on iterative and incremental develpment where requirements and solutions evolve through collaboration between self-organizing, crossfunctional teams.')
             ht.add('backlog sprint', 'Sprint backlogs, an artifact of the Scrum SDLC, represent a list of requirements to be completed. They are a list of all deired work on a project and are reprrioritized at the start of each sprint. Individuals sign up for work of their own choosing.')
+            ht.add('backlogs sprint', 'Sprint backlogs, an artifact of the Scrum SDLC, represent a list of requirements to be completed. They are a list of all deired work on a project and are reprrioritized at the start of each sprint. Individuals sign up for work of their own choosing.')
+
             ht.add('review sprint', 'The team presents what is accomplished during the sprint at the sprint review. This typically takes the form of a demo of new features.')
             ht.add('chatbot', 'This chatbot, ApurvaBot, was made to give students like you information about SDLCs! That is my mission!')
             ht.add('apurva', 'Apurva Narayan is the fantastic professor of COSC 310 ;)')
             ht.add('principles', 'Mains ideas that represent a methadology, in SDLC sense.')
+            ht.add('software', 'Working application that involves tech')
+            ht.add('development', 'Developing a software applicaition')
+            ht.add('life', 'life is life')
+            ht.add('cycle', 'cycle has steps to complete an application')
+            ht.add('backlog', 'subsection of the main projects that need to be done')
+            ht.add('backlogs', 'subsection of the main projects that need to be done')
+            ht.add('sprint', 'A 30 day cycle to work on a project. Used in agile scrum')
+            ht.add('review', '')
 
             ht.add('benefits'.toLowerCase(),'sorry, benifits of what?');
             ht.add('drawbacks'.toLowerCase(),'sorry, drawbacks of what?');
             
-            // Conversational
+            // Conversational Data
             ht2.add('Hi'.toLowerCase(),'Hi!');
             ht2.add('Hey'.toLowerCase(),'Hey there!');
             ht2.add('Hello'.toLowerCase(),'Hello, ask me some SDLC questions!');
@@ -327,7 +328,7 @@
             this.defaultArray.push('Oof, help a bot out eh? Could you rephrase that?');
             this.defaultArray.push('Sorry, JavaScript is my main language, repeat that please');
             this.defaultArray.push('*beep-boop*...zz..error..did not understand human..*beep-boop*');
-            this.defaultArray.push('Didn\'t catch that, please rephrase');
+            this.defaultArray.push('Very interesting...');
             this.defaultArray.push('I had a bad bit ;) rephrase please');
             //TODO: More default sentences  
 }
