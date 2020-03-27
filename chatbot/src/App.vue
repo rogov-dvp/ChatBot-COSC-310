@@ -11,10 +11,10 @@
         <v-col cols="3">
           <LeftSide/>
         </v-col>
-        <v-col cols="6">
+        <v-col offset="2" cols="6">
           <ChatBot/>
         </v-col>
-        <v-col cols="3">
+        <v-col cols="1">
           <RightSide/>
         </v-col>
       </v-row>

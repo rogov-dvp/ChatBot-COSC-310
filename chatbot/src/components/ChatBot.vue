@@ -101,6 +101,7 @@
       return this.hashQuery(keywords); 
     },
 
+    //This is the function where user's message is processed and a chatbot response is made
     sentenceProcess: function(msg) {
       let substringArr = msg.toLowerCase().split(/\W+/);             //splits user's string into an array
       substringArr.sort();                                           //sort alphabetically
@@ -210,27 +211,27 @@
             ht.add('V-Shaped'.toLowerCase(),'V-shaped is a Software Development Life Cycle process where execuation is done in a "V" shape. In essence for every phase or step there is a directly associated testing phase.');
             ht.add('RAD'.toLowerCase(),'Rapid Application Development (RAD) has a quick turnaround time (~60 days) that heavily depends on code and screen generators, and other productivity tools. Users involved in all phases for feedback in planning and design.');
             ht.add('Scrum'.toLowerCase(),'Agile Scrum is a SDLC which accomplishes a develeopment project through breaking down tangable goals into "sprints" and daily 15 min meetings.');
-            ht.add('Incremental'.toLowerCase(),'A SDLC system through repeated cycles (iterative) and in smaller portions at a time (incremental), allowing software developers to take advantage of what was learned during development of earlier parts or versions of the system');
+            ht.add('Incremental'.toLowerCase(),'A SDLC system of iterative and small incremental subprojects, allowing software developers to take advantage of what was learned during development of earlier parts or versions of the system');
             ht.add('Spiral'.toLowerCase(),'Spiral is a SDLC that adoptes different SDLC such as incremental, waterfall, or evolutionary prototyping.');
             ht.add('Extreme Programming'.toLowerCase(),'Extreme Programming is a Software Development Life Cycle that accomodates change as a natural process and emphasizes values and principles rather than process');
             ht.add('XP'.toLowerCase(),'XP (Extreme Programming) is a Software Development Life Cycle that accomodates change as a natural process and emphasizes values and principles rather than process');
             ht.add('Benefits Waterfall'.toLowerCase(),'The Waterfall SDLC is easy to plan since it has a linear-like development');
             ht.add('Drawbacks Waterfall'.toLowerCase(),'The Waterfall SDLC needs well understood and stable requirements upfront');
             ht.add('features Waterfall'.toLowerCase(),'Some features are linear development, easy to plan and staff, mistakes in previous phases are costly');
-            ht.add('Benefits V-Shaped'.toLowerCase(),'The V-Shaped SDLC is good for systems requiring high reliability because of the emphasis on verification and validation');
-            ht.add('Drawbacks V-Shaped'.toLowerCase(),'');
-            ht.add('Features V-Shaped'.toLowerCase(),'');
+            ht.add('Benefits Shaped v'.toLowerCase(),'The V-Shaped SDLC is good for systems requiring high reliability because of the emphasis on verification and validation');
+            ht.add('Drawbacks Shaped v'.toLowerCase(),'It\'s unflexible, and very rigid');
+            ht.add('shaped v'.toLowerCase(),'Similar to Waterfall model, except there are checks at every phase.');
             ht.add('Benefits RAD'.toLowerCase(),'The RAD SDLC has a quick turnaround time');
-            ht.add('Drawbacks RAD'.toLowerCase(),'');
+            ht.add('Drawbacks RAD'.toLowerCase(),'Takes longer than needed');
             ht.add('Features RAD'.toLowerCase(),'In the RAD SDLC, users are involved in all phases of development');
             ht.add('Benefits Scrum'.toLowerCase(),'The beauty with scrum is its flexibility with requirement changes, does not require PM, and minimal managements.');
             ht.add('Drawbacks Scrum'.toLowerCase(),'Some... troublesome.... issues are losing sight of scope creep,  difficult to schedule project completion, and difficult to integrate inexperience programmers. ');
             ht.add('Features Scrum'.toLowerCase(),'Some features are focusing a tangible goal, and sharing daily issues');
             ht.add('Benefits Incremental'.toLowerCase(),'Some cool benefits are creating working software early in development, easy to change requirements, and easier to test iterations');
-            ht.add('Drawbacks Incremental'.toLowerCase(),'T+C45he Incremental SDLC does not allow iterations');
+            ht.add('Drawbacks Incremental'.toLowerCase(),'The Incremental SDLC does not allow iterations');
             ht.add('Features Incremental'.toLowerCase(),'Divide-and-conquer approach');
             ht.add('Benefits Spiral'.toLowerCase(),'Takes advantage of strengths from waterfall, prototyping, and incremental SDLCs');
-            ht.add('Drawbacks Spiral'.toLowerCase(),'');
+            ht.add('Drawbacks Spiral'.toLowerCase(),'Hard to know when to enter the next stage. Aswell, it\'s expensive.');
             ht.add('Features Spiral'.toLowerCase(),'Focuses on risk analysis and management. Best for project where requirements are too complex or evolving');
             ht.add('benefits extreme programming'.toLowerCase(),'Extreme Programming embraces change and recognizes that all requirements will not be known at the beginning.');
             ht.add('drawbacks extreme programming'.toLowerCase(),'');
@@ -241,11 +242,11 @@
             ht.add('programming'.toLowerCase(),'Use code to make life forms like me or being able to show funny cat videos');
             ht.add('Features XP'.toLowerCase(),'Programming is done in pairs, work is completed at a pace that can be sustained indefinitely, test driven development which emphasizes customer involvement');
             ht.add('SDLC'.toLowerCase(),'Software Development Life Cycle development (SDLC) is a process to divide software development work to improve desing, product management, and project management');
-            ht.add('V'.toLowerCase(),'');
+            ht.add('v'.toLowerCase(),'');
             ht.add('Shaped'.toLowerCase(),'');
             ht.add('planning', 'Planning is a crucial part of any sucessful software development project. Detailed planning and scheduling can greatly increase the chances of project completion! ');
-            ht.add('specifications', 'Defining and understanding all the requirements/specifications at the beginning of a project can be crucial to some SDLCs. However, regardless of the chosen SDLC for the software project, having a good idea of the basic requirements before beginning a project is always beneficial.')
-            ht.add('gathering requirements', 'Gathering all the requirements/specifications at the beginning of a project can be crucial to some SDLCs. However, regardless of the chosen SDLC for the software project, having a good idea of the basic requirements before beginning a project is always beneficial.')
+            ht.add('specifications', 'Defining and understanding all the requirements/specifications at the beginning of a project can be crucial to some SDLCs.')
+            ht.add('gathering requirements', 'Gathering all the requirements/specifications at the beginning of a project can be crucial to some SDLCs.')
             ht.add('maintenance', 'A phase included in all software development life cycles, maintenance involves ensuring the system/product continues to function as expected throgoughout it\'s lifetime.')
             ht.add('design','Design in graphics refers to the planning and layout of elements in an image, illustration, or video with the aid of specialized software');
             ht.add('designing','Design in graphics refers to the planning and layout of elements in an image, illustration, or video with the aid of specialized software');
@@ -254,17 +255,16 @@
             ht.add('testing','Software testing is an investigation conducted to provide stakeholders with information about the quality of the software product or service under test.');
             ht.add('deployment','Software deployment is all of the activities that make a software system available for use.');
             ht.add('maintenance','maintenance in software engineering is the modification of a software product after delivery to correct faults, to improve performance or other attributes');
-            ht.add('sdlc','Software Development Life Cycle (SDLC) is a process used by the software industry to design, develop and test high quality softwares. The SDLC aims to produce a high-quality software that meets or exceeds customer expectations, reaches completion within times and cost estimates.');
-            ht.add('cycle development life software','Software Development Life Cycle (SDLC) is a process used by the software industry to design, develop and test high quality softwares. The SDLC aims to produce a high-quality software that meets or exceeds customer expectations, reaches completion within times and cost estimates.');
+            ht.add('sdlc','Software Development Life Cycle (SDLC) is a process used by the software industry to design, develop and test high quality softwares.');
+            ht.add('cycle development life software','Software Development Life Cycle (SDLC) is a process used by the software industry to design, develop and test high quality softwares.');
             ht.add('phases sdlc','Phase 1: Requirement Collection and analysis \n Phase 2: Feasibilty Study \n Phase 3: Design \n Phase 4: Coding \n Phase 5: Testing \n Phase 6: Installation / Deployment \n Phase 7: Maintenance');
             ht.add('phases','Program lifecycle phases are the stages a computer program undergoes, from initial creation to deployment and execution.');
             ht.add('agile principles', 'There are 12 Agile Principles. Some of the key principles include early and continuous delivery of software, welcome changing requirements, and simplicity.')
             ht.add('agile scrum', 'Scrum, an SDLC under the umbrella of Agile Development, is an SDLC which accomplishes a develeopment project through breaking down tangable goals into sprints and daily 15 minute meetings.')
             ht.add('scrum', 'Scrum, an SDLC under the umbrella of Agile Development, is an SDLC which accomplishes a develeopment project through breaking down tangable goals into sprints and daily 15 minute meetings.')
             ht.add('agile', 'Agile software devlopment is a group of software development methods based on iterative and incremental develpment where requirements and solutions evolve through collaboration between self-organizing, crossfunctional teams.')
-            ht.add('backlog sprint', 'Sprint backlogs, an artifact of the Scrum SDLC, represent a list of requirements to be completed. They are a list of all deired work on a project and are reprrioritized at the start of each sprint. Individuals sign up for work of their own choosing.')
-            ht.add('backlogs sprint', 'Sprint backlogs, an artifact of the Scrum SDLC, represent a list of requirements to be completed. They are a list of all deired work on a project and are reprrioritized at the start of each sprint. Individuals sign up for work of their own choosing.')
-
+            ht.add('backlog sprint', 'Sprint backlogs, an artifact of the Scrum SDLC, represent a list of requirements to be completed.')
+            ht.add('backlogs sprint', 'Sprint backlogs, an artifact of the Scrum SDLC, represent a list of requirements to be completed.')
             ht.add('review sprint', 'The team presents what is accomplished during the sprint at the sprint review. This typically takes the form of a demo of new features.')
             ht.add('chatbot', 'This chatbot, ApurvaBot, was made to give students like you information about SDLCs! That is my mission!')
             ht.add('apurva', 'Apurva Narayan is the fantastic professor of COSC 310 ;)')
