@@ -1,19 +1,17 @@
 <template>
-  <div class="d-flex justify-between">
+  <div style="margin:0px;" id='mainDiv'>
     <v-row class="">
       <v-col cols="12" >
-        <!--Chatbot icon and header messenging box-->
-        <v-row>
-          <v-col>
-            <v-icon x-large class="grey--text text--darken-4">adb</v-icon>
-          </v-col>
-          <v-col class="d-flex justify-end">
-            <v-icon x-large class="grey--text text--darken-4">person</v-icon>
-          </v-col>
-        </v-row>
+            <div style="margin-top:30px;margin-left:25px;"><h1 dark style="margin=30px;font-family: 'Abril Fatface';font-size:40px">ApuChat</h1>
+            <v-icon class="mb2 orange--text text--darken-1" style=" margin-top:-100px; margin-left:200px ;" x-large>{{ icon }}</v-icon></div>
+            <div style="position:absolute; top : 50px ; left : 850px">
+            <h3 dark  style="display:inline;font-family: 'Abril Fatface';font-size:35px">ABOUT</h3>
+            <i class="material-icons mb2 orange--text text--darken-1" style="margin-left:20px;font-family: 'Abril Fatface';" >INFO</i></div>
+
+
         <!--Messenging bubbles and text appears in this row-->
-          <v-row id="chatbox" style="height: 400px;border: 1px solid #212121; overflow: auto;">
-            <v-col cols="12">
+          <v-row id="chatbox" style="height: 500px; overflow: auto; margin-top: 20px;">
+            <v-col cols="11">
               <div id="responses">
                     <ul>
                         <!--Chatbot and users outputs are render into here-->
@@ -23,32 +21,30 @@
           </v-row>
 
         <!--Where user inputs text-->
-        <v-container>
+         <v-container style=" width: 90%;background-color: #F7921A ; position:relative; left:-20px; top:70px; border-radius:2px  ">
           <v-row class="">
-            <v-col cols="10" class="flex-grow-1 pl-0"> <!--label="Chat"-->
+            <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
               <v-text-field
-              class="ml-0"
-              placeholder="Chat about SDLC (eg. type: 'agile')"
-              outlined
-              v-model="message"   
+              class="ml-8 white--text"
+              color="white"
+              placeholder="Chat about SDLC ( eg. type: 'agile' )"
+              style="border-style: none; color: white ;font-family: 'Abril Fatface';  border-bottom: none!important;box-shadow: none!important;"
+              v-model="message"  
               v-on:keyup.enter="inputMessage"
               ></v-text-field> 
             </v-col>
             <v-col cols="2" class="flex-shrink-1">
-              <v-btn 
-              v-on:click="inputMessage" 
-              style="min-width:120px;" 
-              x-large
-              class=""
-              >Send</v-btn>
+              <button  
+              style="min-width:120px ; font-family: 'Abril Fatface'; font-size : 24px ; color: white ; margin-left:0px ; margin-top: 10px; font-family=bold ; border:0 none; background-color: transparent ;" 
+              >SEND</button>
             </v-col>
           </v-row>
         </v-container>
-      
-      </v-col>
+     </v-col>
     </v-row>
   </div>
 </template>
+
 
 <script>
 /* eslint-disable */
@@ -60,6 +56,7 @@
         hashtableSDLC: '',    //hashtable instance for SDLC responses
         hashtableConv: '',    //hashtable instance for conversational responses
         defaultArray: [],     //array to store default sentences
+        icon: 'question_answer', //spa, brightness_3, question_answer, opacity
       } 
     },
     methods: {
@@ -86,11 +83,54 @@
     createNewElement: function(tagID,align,width, msg) {    //Creates new <li> element with appropriate class and styling
             let newLi = document.createElement('li');
             newLi.textContent = msg;
-            newLi.className = 'subtitle-1 font-weight-medium ma-2'
             newLi.style.textAlign = align;
+            newLi.style.border = "1px solid white"
+            if(align == 'right'){
+            newLi.style.backgroundColor = "#F7921A" ; 
+            }
+            if(align == 'left'){
+            newLi.style.backgroundColor = "#FF7F0F" ; 
+            }
+            newLi.style.borderRadius = "5px" ;
+            newLi.style.padding="10px"; 
+            newLi.style.margin="10px 0"; 
             newLi.style.maxWidth = width;
+            newLi.style.fontSize = "16px";
+            newLi.style.fontFamily = "Roboto Slab,serif"
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
+
+            if(align == "left"){
+            var img_elem = document.createElement("img");
+            img_elem.setAttribute("src", "https://pbs.twimg.com/profile_images/775736572822052864/t_zQN3e3_400x400.jpg");
+            img_elem.setAttribute("border-radius","50%");
+            img_elem.setAttribute("height", "65px");
+            img_elem.setAttribute("width", "65px");
+            img_elem.style.borderRadius= "50%" ; 
+            img_elem.style.position="relative";
+            img_elem.style.top="55px";
+            img_elem.style.left="-48px";
+            newLi.style.position= "relative";
+            newLi.style.left="80px";
+            img_elem.style.border="5px solid orange"
+            dest.appendChild(img_elem);
+            dest.appendChild(newLi);
+            }
+
+            if(align == "right"){
+            var img_elem = document.createElement("img");
+            img_elem.setAttribute("src", "https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png");
+            img_elem.setAttribute("border-radius","50%");
+            img_elem.setAttribute("height", "60px");
+            img_elem.setAttribute("width", "60px");
+            img_elem.style.borderRadius= "50%" ; 
+            img_elem.style.position="relative";
+            img_elem.style.top="-50px";
+            img_elem.style.border="4px solid black"
+            newLi.style.position= "relative";
+            img_elem.style.left="995px";
+            dest.appendChild(newLi);
+            dest.appendChild(img_elem);}
     },
     scrollToBottom: function() {      //scroll div to bottom
       let chatbox = document.getElementById('chatbox');
@@ -336,7 +376,30 @@
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab|Sen&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+
 ul {
   list-style: none;
 }
+
+
+::placeholder{
+  color: white;
+}
+
+#mainDiv{
+    background-size: cover;
+    background-position: center;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:77%;
+}
+
 </style>
