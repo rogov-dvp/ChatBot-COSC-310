@@ -1,6 +1,6 @@
 <template >
   <div id="mainDiv"> 
-  <h3 style="align:center ; margin-left:30px;margin-top:42px ;font-family: 'Abril Fatface';font-size:35px">FAQ 
+  <h3 style="align:center ; margin-left:30px;margin-top:19px ;font-family: 'Abril Fatface';font-size:35px">FAQ 
     <i class="material-icons mb2 orange--text text--darken-1" style="margin-left:5px" x-large >help</i></h3>
 
 

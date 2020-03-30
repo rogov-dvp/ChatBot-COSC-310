@@ -2,11 +2,11 @@
   <v-app>
     <v-content>
       <!--content-->
-      <v-row style="min-height: 110%;">
+      <v-row style="min-height: 100%;background-color:#ffffff ">
         <v-col cols="9" style = "background-image:/assets/mainchatbackground.jpg;">
           <ChatBot/>
         </v-col>
-        <v-col cols="3" class="dark grey">
+        <v-col cols="3" style="background-image: linear-gradient(#FF7400 , #FEC290 );">
           <RightSide/>
         </v-col>
       </v-row>

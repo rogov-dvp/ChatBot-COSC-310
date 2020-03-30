@@ -2,10 +2,10 @@
   <div style="margin:0px;" id='mainDiv'>
     <v-row class="">
       <v-col cols="12" >
-            <div style="margin-top:30px;margin-left:25px;"><h1 dark style="margin=30px;font-family: 'Abril Fatface';font-size:40px">ApuChat</h1>
-            <v-icon class="mb2 orange--text text--darken-1" style=" margin-top:-100px; margin-left:200px ;" x-large>{{ icon }}</v-icon></div>
-            <div style="position:absolute; top : 50px ; left : 850px">
-            <h3 dark  style="display:inline;font-family: 'Abril Fatface';font-size:35px">ABOUT</h3>
+            <div style="margin-top:5px;margin-left:25px;"><h1 dark style="margin=30px;font-family: 'Abril Fatface';font-size:40px">ApuChat</h1>
+            <v-icon class="mb2 orange--text text--darken-1" style=" margin-top:-100px; margin-left:180px ;" x-large>{{ icon }}</v-icon></div>
+            <div style="position:absolute; top : 25px ; left : 850px">
+            <h3 dark  style="display:inline;font-family: 'Abril Fatface';font-size:37px">ABOUT</h3>
             <i class="material-icons mb2 orange--text text--darken-1" style="margin-left:20px;font-family: 'Abril Fatface';" >INFO</i></div>
 
 
@@ -21,7 +21,7 @@
           </v-row>
 
         <!--Where user inputs text-->
-         <v-container style=" width: 90%;background-color: #F7921A ; position:relative; left:-20px; top:70px; border-radius:2px  ">
+         <v-container style=" width: 90%;background-color: #F7921A ; position:relative; left:-20px; top:30px; border-radius:10px  ">
           <v-row class="">
             <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
               <v-text-field
@@ -35,7 +35,7 @@
             </v-col>
             <v-col cols="2" class="flex-shrink-1">
               <button  
-              style="min-width:120px ; font-family: 'Abril Fatface'; font-size : 24px ; color: white ; margin-left:0px ; margin-top: 10px; font-family=bold ; border:0 none; background-color: transparent ;" 
+              style="min-width:120px ; border : 3px solid white ;border-radius:10px; font-family: 'Abril Fatface'; font-size : 24px ; color: white ; margin-left:0px ; margin-top: 15px; font-family=bold ; background-color: transparent ;" 
               >SEND</button>
             </v-col>
           </v-row>
@@ -65,7 +65,7 @@
         if(this.message != '') {
             let chatBotResponse = '';
             //Add user input
-            this.createNewElement('responses','right','100%', this.message);
+            this.createNewElement('responses','right','66%', this.message);
             
             //Processing user's message --> chatbot response
             chatBotResponse = this.process();
@@ -84,19 +84,22 @@
             let newLi = document.createElement('li');
             newLi.textContent = msg;
             newLi.style.textAlign = align;
-            newLi.style.border = "1px solid white"
+            newLi.style.border = "3px solid white"
             if(align == 'right'){
             newLi.style.backgroundColor = "#F7921A" ; 
             }
             if(align == 'left'){
             newLi.style.backgroundColor = "#FF7F0F" ; 
             }
-            newLi.style.borderRadius = "5px" ;
-            newLi.style.padding="10px"; 
-            newLi.style.margin="10px 0"; 
+            newLi.style.borderRadius = "10px" ;
+            newLi.style.padding="14px"; 
+            newLi.style.margin="10px 0";
+            newLi.style.left="310px";
+            newLi.style.zIndex = "2";
+            newLi.style.boxShadow = "0 0 8rem 0 rgba(black, 0.1),0rem 2rem 4rem -3rem rgba(black, 0.5);" ; 
             newLi.style.maxWidth = width;
             newLi.style.fontSize = "16px";
-            newLi.style.fontFamily = "Roboto Slab,serif"
+            newLi.style.fontFamily = "Merriweather, bold"
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
 
@@ -128,7 +131,7 @@
             img_elem.style.top="-50px";
             img_elem.style.border="4px solid black"
             newLi.style.position= "relative";
-            img_elem.style.left="995px";
+            img_elem.style.left="965px";
             dest.appendChild(newLi);
             dest.appendChild(img_elem);}
     },
