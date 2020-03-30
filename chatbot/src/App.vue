@@ -6,7 +6,7 @@
         <v-col cols="9" style = "background-image:/assets/mainchatbackground.jpg;">
           <ChatBot/>
         </v-col>
-        <v-col cols="3" style="background-image: linear-gradient(#FF7400 , #FEC290 );">
+        <v-col cols="3" style="background-image: linear-gradient(#ffc966 , #ffedcc );">
           <RightSide/>
         </v-col>
       </v-row>

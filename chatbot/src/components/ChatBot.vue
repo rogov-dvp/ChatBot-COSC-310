@@ -6,6 +6,7 @@
             <v-icon class="mb2 orange--text text--darken-1" style=" margin-top:-100px; margin-left:180px ;" x-large>{{ icon }}</v-icon></div>
             <div style="position:absolute; top : 25px ; left : 850px">
             <h3 dark  style="display:inline;font-family: 'Abril Fatface';font-size:37px">ABOUT</h3>
+            
             <i class="material-icons mb2 orange--text text--darken-1" style="margin-left:20px;font-family: 'Abril Fatface';" >INFO</i></div>
 
 
@@ -21,7 +22,7 @@
           </v-row>
 
         <!--Where user inputs text-->
-         <v-container style=" width: 90%;background-color: #F7921A ; position:relative; left:-20px; top:30px; border-radius:10px  ">
+         <v-container style=" width: 90%;background-color: #F7921A ; position:relative; left:-20px; top:50px; border-radius:10px  ">
           <v-row class="">
             <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
               <v-text-field
@@ -84,12 +85,13 @@
             let newLi = document.createElement('li');
             newLi.textContent = msg;
             newLi.style.textAlign = align;
-            newLi.style.border = "3px solid white"
             if(align == 'right'){
-            newLi.style.backgroundColor = "#F7921A" ; 
+            newLi.style.backgroundColor = "#999999" ; 
+            newLi.style.border = "3px solid white"
             }
             if(align == 'left'){
-            newLi.style.backgroundColor = "#FF7F0F" ; 
+            newLi.style.backgroundColor = "#cccccc" ; 
+            newLi.style.border = "3px solid white"
             }
             newLi.style.borderRadius = "10px" ;
             newLi.style.padding="14px"; 
