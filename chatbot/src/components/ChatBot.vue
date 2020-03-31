@@ -4,10 +4,40 @@
       <v-col cols="12" >
             <div style="margin-top:5px;margin-left:25px;"><h1 dark style="margin=30px;font-family: 'Abril Fatface';font-size:40px">ApuChat</h1>
             <v-icon class="mb2 orange--text text--darken-1" style=" margin-top:-100px; margin-left:180px ;" x-large>{{ icon }}</v-icon></div>
-            <div style="position:absolute; top : 25px ; left : 850px">
-            <h3 dark  style="display:inline;font-family: 'Abril Fatface';font-size:37px">ABOUT</h3>
             
-            <i class="material-icons mb2 orange--text text--darken-1" style="margin-left:20px;font-family: 'Abril Fatface';" >INFO</i></div>
+            <!-- Start of About and Info drop down div blocks --> 
+            <div style="position:absolute; top : 25px ; left : 850px">
+
+            <!-- Start of dropdown div block holding About button -->
+            <div class="Aboutdropdown">
+            <button class="dropbtn" dark  style="display:inline;font-family: 'Abril Fatface';font-size:37px">ABOUT</button>
+            <div class="dropdown-content">
+            <p>
+              This Chatbot mimics <b> Dr. Apurva Narayan [Professor at UBCO] </b> by providing users with information regarding 
+              Software Development Life Cycles (SDLCs) based on the user’s queries. The user takes on 
+              the role of a student in <b> COSC 310 [Software Engineering]</b> who is seeking to learn more about SDLCs. This Chatbot 
+              was developed with the purpose of helping students review their knowledge of Software Engineering principles in an efficient manner.
+            </p>
+            </div>
+            </div>
+          
+            <!-- End of dropdown div block holding About button -->
+            
+            <!-- Start of dropdown div block holding  Info button -->
+            <div class="Infodropdown">
+            <button id = "dropbtn2" class="material-icons mb2 orange--text text--darken-1" style="position:absolute; left : 150px ; top : 20px ;font-family: 'Abril Fatface';" >INFO</button>
+            <div class="dropdown-content2">
+             <p>
+              Devleoped By: <br>
+              Alex Rogov, Ahmad Raza Jamal, Florencia Chomski, Paul Zapote, Kshitij Suri
+            </p>
+            </div>
+            </div>
+            <!-- End of dropdown div block holding Info button -->
+
+            </div>
+            <!-- End of About and Info drop down div blocks --> 
+        
 
 
         <!--Messenging bubbles and text appears in this row-->
@@ -22,28 +52,31 @@
           </v-row>
 
         <!--Where user inputs text-->
-         <v-container style=" width: 90%;background-color: #F7921A ; position:relative; left:-20px; top:50px; border-radius:10px  ">
+         <v-container style=" width: 90%; position:relative; left:-20px; top:50px; border-radius:10px  ">
           <v-row class="">
             <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
               <v-text-field
-              class="ml-8 white--text"
-              color="white"
+              class="ml-8 black--text"
+              color="black"
               placeholder="Chat about SDLC ( eg. type: 'agile' )"
-              style="border-style: none; color: white ;font-family: 'Abril Fatface';  border-bottom: none!important;box-shadow: none!important;"
+              style="border-style: none; color: black ;font-family: 'Abril Fatface';  border-bottom: none!important;box-shadow: none!important;"
               v-model="message"  
               v-on:keyup.enter="inputMessage"
               ></v-text-field> 
             </v-col>
             <v-col cols="2" class="flex-shrink-1">
               <button  
-              style="min-width:120px ; border : 3px solid white ;border-radius:10px; font-family: 'Abril Fatface'; font-size : 24px ; color: white ; margin-left:0px ; margin-top: 15px; font-family=bold ; background-color: transparent ;" 
+              style="min-width:120px ; border-style : none none solid none ;border-radius:3px; font-family: 'Abril Fatface'; font-size : 24px ; color: black ; margin-left:0px ; margin-top: 15px; font-family=bold ; background-color: transparent ;" 
               >SEND</button>
             </v-col>
           </v-row>
         </v-container>
+        <!--  End of user input -->
+
      </v-col>
     </v-row>
   </div>
+
 </template>
 
 
@@ -85,14 +118,16 @@
             let newLi = document.createElement('li');
             newLi.textContent = msg;
             newLi.style.textAlign = align;
-            if(align == 'right'){
+
+            if(align == 'right'){ // If its the user chat then chang chat box color to this
             newLi.style.backgroundColor = "#999999" ; 
             newLi.style.border = "3px solid white"
             }
-            if(align == 'left'){
+            if(align == 'left'){ // If its the bot chat then chang chat box color to this
             newLi.style.backgroundColor = "#cccccc" ; 
             newLi.style.border = "3px solid white"
             }
+
             newLi.style.borderRadius = "10px" ;
             newLi.style.padding="14px"; 
             newLi.style.margin="10px 0";
@@ -105,7 +140,7 @@
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
 
-            if(align == "left"){
+            if(align == "left"){ // Code that adds the image for bot chat and aligns it 
             var img_elem = document.createElement("img");
             img_elem.setAttribute("src", "https://pbs.twimg.com/profile_images/775736572822052864/t_zQN3e3_400x400.jpg");
             img_elem.setAttribute("border-radius","50%");
@@ -122,7 +157,7 @@
             dest.appendChild(newLi);
             }
 
-            if(align == "right"){
+            if(align == "right"){ // Code that adds the image for user chat and aligns it 
             var img_elem = document.createElement("img");
             img_elem.setAttribute("src", "https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png");
             img_elem.setAttribute("border-radius","50%");
@@ -137,6 +172,7 @@
             dest.appendChild(newLi);
             dest.appendChild(img_elem);}
     },
+
     scrollToBottom: function() {      //scroll div to bottom
       let chatbox = document.getElementById('chatbox');
       chatbox.scrollTop = chatbox.scrollHeight;
@@ -406,5 +442,42 @@ ul {
     height:100%;
     width:77%;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 100px;
+  font-family: 'Merriweather', bold;
+  padding: 30px;
+  background-color: #f9f9f9;
+  min-width: 400px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 3;
+}
+
+.dropdown-content2 {
+  display: none;
+  position: absolute;
+  right: -40px;
+  font-family: 'Merriweather', bold;
+  padding: 30px;
+  background-color: #f9f9f9;
+  min-width: 400px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 3;
+}
+
+.Infodropdown:hover .dropdown-content2 {
+  display: block;
+}
+
+/*.dropdown-content p:hover { background-color: #ffedcc
+
+}*/
+
+.Aboutdropdown:hover .dropdown-content {
+  display: block;
+}
+
 
 </style>
