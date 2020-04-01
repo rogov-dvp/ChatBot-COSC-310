@@ -72,24 +72,20 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
         
     inputMessage: function() {
         if(this.message != '') {
-            let chatBotResponse = '';
             //Add user input
             this.createNewElement('responses','right','100%', this.message);
             
             //Processing user's message --> chatbot response
             this.DialogFlowAPI(this.message).then(response =>  {
-              chatBotResponse = response;
               //Create new chatbot response
-              this.createNewElement('responses','left', '66%' , chatBotResponse);
-              
-              //scroll to bottom if needed
-              this.scrollToBottom(); 
-            
+              this.createNewElement('responses','left', '66%' , response);
+              //Yes, a second one is needed.
+              this.scrollToBottom();    
             });
 
-
-
-            this.message = '';
+              //scroll to bottom of message box if needed
+              this.scrollToBottom(); 
+              this.message = '';
         }
     },
 
@@ -103,10 +99,12 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
     },
+
     scrollToBottom: function() {      //scroll div to bottom
       let chatbox = document.getElementById('chatbox');
       chatbox.scrollTop = chatbox.scrollHeight;
     },
+
     DialogFlowAPI: function(queryUser) {
           return axios.get(
               `https://api.dialogflow.com/v1/query?v=20150910&lang=en&sessionId=12346&query=${queryUser}`,   //API URL
@@ -115,12 +113,12 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
                   Authorization: `Bearer ${token}`      //Public Access Token
                 }
               }
-          )
-          .then(response => {
+          ).then(response => {
+
           // handle success
           let snippet = response.data.result.fulfillment.speech;      //Get's the response based on user's message
           console.log('snippet: ' + snippet);
-          return snippet;               
+          return snippet;       
       })
       .catch(function (error) {
           // handle error
