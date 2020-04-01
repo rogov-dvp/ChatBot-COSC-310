@@ -323,11 +323,11 @@ ul {
 .dropdown-content2 {
   display: none;
   position: absolute;
-  right: -40px;
+  right: 40px;
   font-family: 'Merriweather', bold;
   padding: 30px;
   background-color: #f9f9f9;
-  min-width: 400px;
+  width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 3;
 }
