@@ -1,15 +1,19 @@
 <template>
-  <div style="margin:0px;" id='mainDiv'>
-    <v-row class="" width="75%">
+  <!-- <div style="margin:0px;" id='mainDiv'> -->
+    <v-row id='mainDiv' class="">
+      
       <v-col cols="9" >
+        <v-row class="ma-0 pa-0 d-flex justify-space-between">
+          <v-col cols="3">
             <div style="margin-top:5px;margin-left:25px;"><h1 dark style="margin=30px;font-family: 'Abril Fatface';font-size:40px">ApuChat</h1>
             <v-icon class="mb2 orange--text text--darken-1" style=" margin-top:-100px; margin-left:180px ;" x-large>{{ icon }}</v-icon></div>
-            
+          </v-col>
+          <v-col cols="3" class="d-flex justify-end">
             <!-- Start of About and Info drop down div blocks --> 
-            <div style="position:absolute; top : 25px ; left : 850px">
+            <div style="">  <!--position:absolute; top : 25px ; left : 850px-->
 
             <!-- Start of dropdown div block holding About button -->
-            <div class="Aboutdropdown">
+            <span class="Aboutdropdown">
             <button class="dropbtn" dark  style="display:inline;font-family: 'Abril Fatface';font-size:37px">ABOUT</button>
             <div class="dropdown-content">
             <p>
@@ -19,32 +23,36 @@
               was developed with the purpose of helping students review their knowledge of Software Engineering principles in an efficient manner.
             </p>
             </div>
-            </div>
+            </span>
           
             <!-- End of dropdown div block holding About button -->
             
             <!-- Start of dropdown div block holding  Info button -->
-            <div class="Infodropdown">
-            <button id = "dropbtn2" class="material-icons mb2 orange--text text--darken-1" style="position:absolute; left : 150px ; top : 20px ;font-family: 'Abril Fatface';" >INFO</button>
+            <span class="Infodropdown ml-2">
+            <button id = "dropbtn2" class="material-icons mb2 orange--text text--darken-1" 
+            style="font-family: 'Abril Fatface';" > <!--position:absolute; left : 150px ; top : 20px ;-->
+            INFO</button>
             <div class="dropdown-content2">
              <p>
               Devleoped By: <br>
               Alex Rogov, Ahmad Raza Jamal, Florencia Chomski, Paul Zapote, Kshitij Suri
             </p>
             </div>
-            </div>
+            </span>
             <!-- End of dropdown div block holding Info button -->
 
             </div>
+          </v-col>
+            </v-row>
             <!-- End of About and Info drop down div blocks --> 
         
 
 
         <!--Messenging bubbles and text appears in this row-->
-          <v-row id="chatbox" style="height: 510px;width: 1050px; overflow: auto; margin-top: 20px;">
+          <v-row id="chatbox" style=" overflow: auto; margin-top: 20px; height: 510px;width: 100%;">
             <v-col cols="12">
               <div id="responses">
-                    <ul>
+                    <ul class="pl-12 pl-12">
                         <!--Chatbot and users outputs are render into here-->
                     </ul>
               </div>
@@ -52,107 +60,64 @@
           </v-row>
 
         <!--Where user inputs text-->
-         <v-container style=" width: 130%; position:relative; left:0px; top:50px; border-radius:10px  ">
+         <v-container class="ml-12" width="100%;">
           <v-row class="">
-            <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
+            <v-col cols="10" class="flex-grow-1" style="min-width:90%;" color="white" > <!--label="Chat"-->
               <v-text-field
-              id="chat_textfield"
-              class="ml-8 black--text"
+              class=" black--text"
+              style="font-size:20px;"
               color="black"
-              placeholder="Chat about SDLC ( eg. type: 'agile' )"
-              style="border-style: none; color: black ;font-family: 'Abril Fatface';  border-bottom: none!important;box-shadow: none!important;"
+              placeholder="Chat about SDLC ( eg. ask about 'agile' )"
               v-model="message"  
               v-on:keyup.enter="inputMessage"
               ></v-text-field> 
             </v-col>
-            <v-col cols="2" class="flex-shrink-1">
-              <button  
+            <v-col cols="1" class="flex-shrink-1">
+              <v-btn  
               v-on:click="inputMessage"
-              style="min-width:120px ; border-style : none none solid none ;border-radius:3px; font-family: 'Abril Fatface'; font-size : 24px ; color: black ; margin-left:0px ; margin-top: 10px; font-family=bold ; background-color: transparent ;" 
-              >SEND</button>
+              
+              x-large
+              class="ml-0 mt-2"
+              style="height:50px ; font-family: 'Abril Fatface'; font-size : 24px ; color: black ;" 
+              >Send</v-btn>
             </v-col>
           </v-row>
         </v-container>
         <!--  End of user input -->
 
      </v-col>
-  </v-row>
+
+
+  <v-col cols="3" class="pt-0">
 
   <!-- Start of div block 2 for FAQ section --> 
-  <div id="mainDiv2" > 
-    <h3 class="ml-7 mt-7" style="font-family: 'Abril Fatface';font-size:35px">FAQ 
-    <i class="material-icons mb2 orange--text text--darken-1" style="margin-left:5px" x-large
-     title="Try out some of these examples"
-     >help</i>
-    </h3>
-
     <!--  A container the FAQ's --> 
-    <v-container  style="position:relative;; top: 35px; border-radius: 10px; height:120px;">
-          <!--  A row containing a button for first FAQ --> 
-          <v-row>
-            <!-- <div class="suggestions" style="border-radius: 10px; width: 330px;"> -->
+    <v-container id="mainDiv2"  style="border-radius: 10px;" height="100%">
+        <v-row class="mb-4">
+          <v-col class="">
+            <span class="ml-4" style="font-family: 'Abril Fatface';font-size:35px">FAQ 
+            <i class="material-icons mb-2 orange--text text--darken-1 ml-1"  x-large
+            title="Try out some of these examples"
+            >help</i>
+            </span>
+          </v-col>
+        </v-row>
+          <!--  A row of button for first FAQ --> 
+          <v-row v-for="faq in faqs" :key="faq.text">
             <v-col cols="12">
-              <v-btn id="waterfall" width="330px" height="50px"  v-on:click="insertFAQ" class="suggestions black--text mt-1 d-flex justify-start" style="font-family: 'Merriweather', bold" text>
-              Waterfall
+              <v-btn id="waterfall" width="330px" height="60px"  v-on:click="insertFAQ" 
+              class="suggestions black--text mt-1 d-flex justify-start" 
+              style="font-family: 'Merriweather', bold; font-size:18px" text>
+              {{ faq.text }}
               </v-btn>
-              <!-- <button id="waterfall" v-on:click="insertFAQ"
-              style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">
-              Waterfall
-              </button> -->
             </v-col>
-            <!-- </div> -->
           </v-row>
 
-          <!--  A row containing a button for second FAQ --> 
-          <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
-            <v-col cols="3">
-              <button id = "vshaped"  v-on:click="insertFAQ"
-              style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">SDLC</button>
-            </v-col>
-            </div>
-          </v-row>
-
-          <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
-            <v-col cols="3">
-              <button id = "agile"  v-on:click="insertFAQ"
-              style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">Agile</button>
-            </v-col>
-            </div>
-          </v-row>
-
-          <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
-            <v-col cols="3">
-              <button id = "scrum"  v-on:click="insertFAQ"
-              style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">Scrum</button>
-            </v-col>
-            </div>
-          </v-row>
-
-          <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
-            <v-col cols="3">
-              <button id = "xp"  v-on:click="insertFAQ"
-              style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">XP</button>
-            </v-col>
-            </div>
-          </v-row>
-
-          <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
-            <v-col cols="3">
-              <button id = "rad"  v-on:click="insertFAQ"
-              style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">RAD</button>
-            </v-col>
-            </div>
-          </v-row>
         </v-container>
-    </div>
-    <!-- End of div block 2 for FAQ section -->
-
-  </div>
+        <!-- End of div block 2 for FAQ section -->
+    </v-col>
+  </v-row>
+  <!-- </div> -->
 </template>
 
 
@@ -173,6 +138,19 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
       return {
         message: '',          //User's message
         icon: 'question_answer',
+        faqs: [{
+          text: 'Waterfall',
+        },{
+          text: 'SDLC',
+        },{
+          text: 'Agile',
+        },{
+          text: 'Scrum',
+        },{
+          text: 'XP',
+        },{
+          text: 'RAD',
+        }]
       } 
     },
     methods: {
@@ -206,10 +184,6 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
             newLi.style.backgroundColor = "#999999" ; 
             newLi.style.border = "3px solid white"
             }
-            if(align == 'left'){ // If its the bot chat then chang chat box color to this
-            newLi.style.backgroundColor = "#cccccc" ; 
-            newLi.style.border = "3px solid white"
-            }
 
             newLi.style.borderRadius = "10px" ;
             newLi.style.padding="14px"; 
@@ -221,6 +195,12 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
             newLi.style.fontSize = "16px";
             newLi.style.fontFamily = "Merriweather, bold"
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
+
+                        if(align == 'left'){ // If its the bot chat then chang chat box color to this
+            newLi.style.backgroundColor = "#cccccc" ; 
+            newLi.style.border = "3px solid white"
+            newLi.style.marginTop = "-50px"
+            }
             dest.appendChild(newLi);
 
             if(align == "left"){ // Code that adds the image for bot chat and aligns it 
@@ -251,7 +231,7 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
             img_elem.style.top="-50px";
             img_elem.style.border="4px solid black"
             newLi.style.position= "relative";
-            img_elem.style.left="915px";
+            img_elem.style.left="1026px";
             dest.appendChild(newLi);
             dest.appendChild(img_elem);}
     },
@@ -315,16 +295,16 @@ ul {
     bottom:0;
     right:0;
     height:100%;
-    width:77%;
+    /* width:77%; */
 }
 
 #mainDiv2{
-    position:absolute;
-    top:0px;
-    left:1100px;
+    /* position:absolute; */
+    /* top:0px; */
+    /* left:1100px; */
     background-image:  linear-gradient(#ffc966 , #ffedcc );
     height:100%;
-    width:34%;
+    /* width:34%; */
 }
 
 .dropdown-content {
@@ -334,7 +314,8 @@ ul {
   font-family: 'Merriweather', bold;
   padding: 30px;
   background-color: #f9f9f9;
-  min-width: 400px;
+  /* min-width: 400px; */
+  width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 3;
 }
