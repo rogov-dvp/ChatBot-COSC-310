@@ -58,7 +58,7 @@ DialogFLow allows for multiple conversation life steps. A step is when a chatbot
 
 #### Multiple variations of user input structure.
 
-Another feature of DialogFlow is allowing the user to use synonyms for key words. For example, "extreme programming" may be written and most likely be written as "xp". This synonym system allows DialogFlow to understand what the user is saying. The result incresases the way a user may type their input and thus improves our chatbot. 
+Another feature of DialogFlow is allowing the user to use synonyms for key words. For example, "extreme programming" may be written and most likely be written as "xp". This synonym system allows DialogFlow to understand what the user is saying. The result increases the way a user may type their input and thus improves our chatbot. 
 
 <Photo 5>
 
@@ -66,11 +66,11 @@ Another feature of DialogFlow is allowing the user to use synonyms for key words
 
 Google Firebase is currently hosting our [site](https://chatbot-310-app.firebaseapp.com/).
 
-Apart from hosting, Firebase allows us easily to connect to DialogFlow since they are both maintained by Google.
+As well, since we already have a project with Firebase, it allowed us to easily connect the same project with DialogFlow since they are both maintained by Google.
 
 ## About
 
-Devleoped By: *Alex Rogov,Ahmad Raza Jamal, Florencia Chomski, Paul Zapote, Kshitij Suri*
+Devleoped By: *Alex Rogov, Ahmad Raza Jamal, Florencia Chomski, Paul Zapote, Kshitij Suri*
 
 University of British Columbia | Software Engineering Course | 2020 Spring
 
