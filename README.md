@@ -38,14 +38,29 @@ The chatbot uses a RESTful API and calls a GET method to DialogFlow via axios. T
 
 #### Typo 
 
+DialogFlow has built in typo checcker. If there are large typos with words that are not key words, DialogFlow still understands what is being requested of it. However, only small typos's such as adding an an 's' at the end of key words will work.
 
+<Photo 1>
+
+<Photo 2>
 
 #### Small Talk
 
+We implemented the small talk plugin within DialogFlow. This covers phrases such as greetings, goodbyes, thank you, how's your day, and other smaller one phrase conversations. This plugin makes the chatbot seem more natural with small talk.
+
+<Photo 3>
+
 #### Conversations life length increase
+
+DialogFLow allows for multiple conversation life steps. A step is when a chatbot and the user both say a phrase (eg) question and answer). Multiple life steps means that DialogFlow can continue a conversation of the same topic based on the previous conversation steps. This improves conversation flow and changes the conversation from an interview conversation to a dialogue.
+
+<Photo 4>
 
 #### Multiple variations of user input structure.
 
+Another feature of DialogFlow is allowing the user to use synonyms for key words. For example, "extreme programming" may be written and most likely be written as "xp". This synonym system allows DialogFlow to understand what the user is saying. The result incresases the way a user may type their input and thus improves our chatbot. 
+
+<Photo 5>
 
 ### Hosting
 
