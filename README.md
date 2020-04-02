@@ -38,7 +38,7 @@ The chatbot uses a RESTful API and calls a GET method to DialogFlow via axios. T
 
 #### Typo 
 
-DialogFlow has built in typo checker. If there are large typos with words that are not key words, DialogFlow still understands what is being requested of it. However, only small typos's such as adding an an 's' at the end of key words will work.
+DialogFlow has built in typo checker. If there are large typos with words that are not key words, DialogFlow still understands what is being requested of it. However, it can only handle small typos's such as capitalizations or adding an 's' at the end of key words.
 
 <Photo 1>
 
