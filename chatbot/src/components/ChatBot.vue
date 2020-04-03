@@ -189,11 +189,13 @@
 
             if(align == 'right'){ // If its the user chat then chang chat box color to this
             newLi.style.backgroundColor = "#999999" ; 
-            newLi.style.border = "3px solid white"
+            newLi.style.border = "3px solid white";
             }
+
             if(align == 'left'){ // If its the bot chat then chang chat box color to this
             newLi.style.backgroundColor = "#cccccc" ; 
-            newLi.style.border = "3px solid white"
+            newLi.style.border = "3px solid white";
+            newLi.style.bottom= "50px" ; 
             }
 
             newLi.style.borderRadius = "10px" ;
