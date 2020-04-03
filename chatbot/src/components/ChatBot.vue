@@ -1,4 +1,4 @@
-<template>
+<template id="mainBlock">
   <div style="margin:0px;" id='mainDiv'>
     <v-row class="">
       <v-col cols="9" >
@@ -52,7 +52,7 @@
           </v-row>
 
         <!--Where user inputs text-->
-         <v-container style=" width: 130%; position:relative; left:0px; top:50px; border-radius:10px  ">
+         <v-container style=" width: 120%; position:relative; left:0px; top:570px; border-radius:10px; ">
           <v-row class="">
             <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
               <v-text-field
@@ -524,7 +524,12 @@ ul {
     left:1100px;
     background-image:  linear-gradient(#ffc966 , #ffedcc );
     height:100%;
-    width:34%;
+    width:31%;
+}
+
+#chatbox{
+  position: absolute;
+  z-index: -4;
 }
 
 .dropdown-content {
@@ -536,19 +541,19 @@ ul {
   background-color: #f9f9f9;
   min-width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 10;
+  z-index: 999 ;
 }
 
 .dropdown-content2 {
   display: none;
-  position: ab;
+  position: absolute;
   right: -40px;
   font-family: 'Merriweather', bold;
   padding: 30px;
   background-color: #f9f9f9;
   min-width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 30;
+  z-index: 999 ;
 }
 
 .Infodropdown:hover .dropdown-content2 {
