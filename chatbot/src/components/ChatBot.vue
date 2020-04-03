@@ -201,8 +201,7 @@
             newLi.style.position = "relative";
             newLi.style.border = "3px solid white";
             newLi.style.left="30.9%"
-            
-            alert(screen.width);
+
             if(screen.width > 1450){
             newLi.style.left="22.9%"
             }
