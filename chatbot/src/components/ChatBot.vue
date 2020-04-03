@@ -186,10 +186,27 @@
             let newLi = document.createElement('li');
             newLi.textContent = msg;
             newLi.style.textAlign = align;
+            newLi.style.borderRadius = "10px" ;
+            newLi.style.padding="14px"; 
+            newLi.style.margin="10px 0";
+            //newLi.style.left="310px";
+            newLi.style.zIndex = "2";
+            newLi.style.boxShadow = "0 0 8rem 0 rgba(black, 0.1),0rem 2rem 4rem -3rem rgba(black, 0.5);" ; 
+            newLi.style.maxWidth = width;
+            newLi.style.fontSize = "16px";
+            newLi.style.fontFamily = "Merriweather, bold"
 
-            if(align == 'right'){ // If its the user chat then chang chat box color to this
+             if(align == 'right'){ // If its the user chat then chang chat box color to this
             newLi.style.backgroundColor = "#999999" ; 
+            newLi.style.position = "relative";
             newLi.style.border = "3px solid white";
+            newLi.style.left="30.9%"
+            
+            alert(screen.width);
+            if(screen.width > 1450){
+            newLi.style.left="22.9%"
+            }
+
             }
 
             if(align == 'left'){ // If its the bot chat then chang chat box color to this
@@ -198,15 +215,6 @@
             newLi.style.bottom= "50px" ; 
             }
 
-            newLi.style.borderRadius = "10px" ;
-            newLi.style.padding="14px"; 
-            newLi.style.margin="10px 0";
-            newLi.style.left="310px";
-            newLi.style.zIndex = "2";
-            newLi.style.boxShadow = "0 0 8rem 0 rgba(black, 0.1),0rem 2rem 4rem -3rem rgba(black, 0.5);" ; 
-            newLi.style.maxWidth = width;
-            newLi.style.fontSize = "16px";
-            newLi.style.fontFamily = "Merriweather, bold"
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
 
