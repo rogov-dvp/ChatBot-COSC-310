@@ -41,7 +41,7 @@
 
 
         <!--Messenging bubbles and text appears in this row-->
-          <v-row id="chatbox" style="height: 510px;width: 1050px; overflow: auto; margin-top: 20px;">
+          <v-row id="chatbox" style="height: 66vh;width: 72.9vw; overflow: auto; margin-top: 20px;">
             <v-col cols="12">
               <div id="responses">
                     <ul>
@@ -52,7 +52,7 @@
           </v-row>
 
         <!--Where user inputs text-->
-         <v-container style=" width: 120%; position:relative; left:0px; top:570px; border-radius:10px; ">
+         <v-container style=" width: 120%; position:relative; left:0vw; top:70vh; border-radius:10px; ">
           <v-row class="">
             <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
               <v-text-field
