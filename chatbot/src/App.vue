@@ -1,35 +1,21 @@
 <template>
   <v-app>
     <v-content>
-      <!--Navigation-->
-      <v-row>
-          <Header/>
-      </v-row>
-
       <!--content-->
-      <v-row style="max-height: 85%;">
-        <v-col cols="3">
-          <LeftSide/>
-        </v-col>
-        <v-col cols="6">
+      <v-row style="min-height: 100%;background-color:#ffffff ">
+        <v-col cols="12" style = "background-image:/assets/mainchatbackground.jpg;">
           <ChatBot/>
         </v-col>
-        <v-col cols="3">
-          <RightSide/>
-        </v-col>
       </v-row>
-<!--  -->
       <Footer/>
     </v-content>
   </v-app>
+
 </template>
 
 <script>
 import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
-import LeftSide from './components/LeftSide';
-import RightSide from './components/RightSide';
-import Header from './components/Header';
 
 
 export default {
@@ -37,10 +23,7 @@ export default {
 
   components: {
     ChatBot,
-    Footer,
-    LeftSide,
-    RightSide,
-    Header,
+    Footer
   },
 
   data ()  {
@@ -48,5 +31,7 @@ export default {
       
     }
   },
+
 };
+
 </script>
