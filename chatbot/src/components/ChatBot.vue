@@ -1,4 +1,4 @@
-<template>
+<template id="mainBlock">
   <div style="margin:0px;" id='mainDiv'>
     <v-row class="">
       <v-col cols="9" >
@@ -6,7 +6,7 @@
             <v-icon class="mb2 orange--text text--darken-1" style=" margin-top:-100px; margin-left:180px ;" x-large>{{ icon }}</v-icon></div>
             
             <!-- Start of About and Info drop down div blocks --> 
-            <div style="position:absolute; top : 25px ; left : 850px">
+            <div style="position:fixed; top : 25px ; left : 850px">
 
             <!-- Start of dropdown div block holding About button -->
             <div class="Aboutdropdown">
@@ -25,10 +25,10 @@
             
             <!-- Start of dropdown div block holding  Info button -->
             <div class="Infodropdown">
-            <button id = "dropbtn2" class="material-icons mb2 orange--text text--darken-1" style="position:absolute; left : 150px ; top : 20px ;font-family: 'Abril Fatface';" >INFO</button>
+            <button id = "dropbtn2" class="material-icons mb2 orange--text text--darken-1" style="position:fixed; left : 990px ; top : 45px ;font-family: 'Abril Fatface';" >INFO</button>
             <div class="dropdown-content2">
              <p>
-              Devleoped By: <br>
+              Developed By: <br>
               Alex Rogov, Ahmad Raza Jamal, Florencia Chomski, Paul Zapote, Kshitij Suri
             </p>
             </div>
@@ -41,7 +41,7 @@
 
 
         <!--Messenging bubbles and text appears in this row-->
-          <v-row id="chatbox" style="height: 510px;width: 1050px; overflow: auto; margin-top: 20px;">
+          <v-row id="chatbox" style="height: 66vh;width: 72.9vw; overflow: auto; margin-top: 20px;">
             <v-col cols="12">
               <div id="responses">
                     <ul>
@@ -52,7 +52,7 @@
           </v-row>
 
         <!--Where user inputs text-->
-         <v-container style=" width: 130%; position:relative; left:0px; top:50px; border-radius:10px  ">
+         <v-container style=" width: 120%; position:relative; left:0vw; top:70vh; border-radius:10px; ">
           <v-row class="">
             <v-col cols="10" class="flex-grow-1 pl-0" color="white" > <!--label="Chat"-->
               <v-text-field
@@ -60,7 +60,7 @@
               class="ml-8 black--text"
               color="black"
               placeholder="Chat about SDLC ( eg. type: 'agile' )"
-              style="border-style: none; color: black ;font-family: 'Abril Fatface';  border-bottom: none!important;box-shadow: none!important;"
+              style="font-size: 20px ; border-style: none; color: black ;font-family: 'Merriweather, bold';  border-bottom: none!important;box-shadow: none!important;"
               v-model="message"  
               v-on:keyup.enter="inputMessage"
               ></v-text-field> 
@@ -87,7 +87,7 @@
     <v-container  style="position:relative; left:8px; top: 35px; border-radius: 10px; height:120px;">
           <!--  A row containing a button for first FAQ --> 
           <v-row>
-            <div class = "suggestions" style = "border-radius: 10px; width: 330px;">
+            <div class = "suggestions" style = "border-radius: 10px; width: 325px;" v-on:click="insertFAQ" >
             <v-col cols="3">
               <button id = "waterfall" v-on:click="insertFAQ"
               style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">Waterfall</button>
@@ -96,26 +96,26 @@
           </v-row>
 
           <!--  A row containing a button for second FAQ --> 
-          <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
+          <v-row style ="margin-top:20px;" >
+            <div class ="suggestions" style="border-radius: 10px; width: 325px;" v-on:click="insertFAQ">
             <v-col cols="3">
-              <button id = "vshaped"  v-on:click="insertFAQ"
+              <button id = "vshaped" v-on:click="insertFAQ"
               style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">SDLC</button>
             </v-col>
             </div>
           </v-row>
 
           <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
+            <div class ="suggestions" style="border-radius: 10px; width: 325px;" v-on:click="insertFAQ">
             <v-col cols="3">
-              <button id = "agile"  v-on:click="insertFAQ"
+              <button id = "agile" v-on:click="insertFAQ" 
               style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">Agile</button>
             </v-col>
             </div>
           </v-row>
 
           <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
+            <div class ="suggestions" style="border-radius: 10px; width: 325px;" v-on:click="insertFAQ">
             <v-col cols="3">
               <button id = "scrum"  v-on:click="insertFAQ"
               style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">Scrum</button>
@@ -124,7 +124,7 @@
           </v-row>
 
           <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
+            <div class ="suggestions" style="border-radius: 10px; width: 325px;" v-on:click="insertFAQ">
             <v-col cols="3">
               <button id = "xp"  v-on:click="insertFAQ"
               style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">XP</button>
@@ -133,7 +133,7 @@
           </v-row>
 
           <v-row style ="margin-top:20px;">
-            <div class ="suggestions" style="border-radius: 10px; width: 330px;">
+            <div class ="suggestions" style="border-radius: 10px; width: 325px;" v-on:click="insertFAQ">
             <v-col cols="3">
               <button id = "rad"  v-on:click="insertFAQ"
               style= "color: black; margin-left:10px; margin-top: 5px; font-family: 'Merriweather', bold; border:0 none; background-color: transparent;">RAD</button>
@@ -164,7 +164,8 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
     data() {
       return {
         message: '',          //User's message
-      } 
+      }   //        icon: 'question_answer', //spa, brightness_3, question_answer, opacity
+
     },
     methods: {
         
@@ -196,25 +197,34 @@ const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
             let newLi = document.createElement('li');
             newLi.textContent = msg;
             newLi.style.textAlign = align;
-
-            if(align == 'right'){ // If its the user chat then chang chat box color to this
-            newLi.style.backgroundColor = "#999999" ; 
-            newLi.style.border = "3px solid white"
-            }
-            if(align == 'left'){ // If its the bot chat then chang chat box color to this
-            newLi.style.backgroundColor = "#cccccc" ; 
-            newLi.style.border = "3px solid white"
-            }
-
             newLi.style.borderRadius = "10px" ;
             newLi.style.padding="14px"; 
             newLi.style.margin="10px 0";
-            newLi.style.left="310px";
+            //newLi.style.left="310px";
             newLi.style.zIndex = "2";
             newLi.style.boxShadow = "0 0 8rem 0 rgba(black, 0.1),0rem 2rem 4rem -3rem rgba(black, 0.5);" ; 
             newLi.style.maxWidth = width;
             newLi.style.fontSize = "16px";
             newLi.style.fontFamily = "Merriweather, bold"
+
+             if(align == 'right'){ // If its the user chat then chang chat box color to this
+            newLi.style.backgroundColor = "#999999" ; 
+            newLi.style.position = "relative";
+            newLi.style.border = "3px solid white";
+            newLi.style.left="30.9%"
+
+            if(screen.width > 1450){
+            newLi.style.left="22.9%"
+            }
+
+            }
+
+            if(align == 'left'){ // If its the bot chat then chang chat box color to this
+            newLi.style.backgroundColor = "#cccccc" ; 
+            newLi.style.border = "3px solid white";
+            newLi.style.bottom= "50px" ; 
+            }
+
             let dest = document.getElementById(tagID).getElementsByTagName('ul')[0];
             dest.appendChild(newLi);
 
@@ -301,9 +311,8 @@ ul {
 }
 
 #mainDiv{
-    background-size: cover;
     background-position: center;
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     bottom:0;
@@ -313,12 +322,17 @@ ul {
 }
 
 #mainDiv2{
-    position:absolute;
+    position:fixed;
     top:0px;
     left:1100px;
     background-image:  linear-gradient(#ffc966 , #ffedcc );
     height:100%;
-    width:34%;
+    width:31%;
+}
+
+#chatbox{
+  position: absolute;
+  z-index: -4;
 }
 
 .dropdown-content {
@@ -330,7 +344,7 @@ ul {
   background-color: #f9f9f9;
   min-width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 3;
+  z-index: 999 ;
 }
 
 .dropdown-content2 {
@@ -342,7 +356,7 @@ ul {
   background-color: #f9f9f9;
   min-width: 400px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 3;
+  z-index: 999 ;
 }
 
 .Infodropdown:hover .dropdown-content2 {
