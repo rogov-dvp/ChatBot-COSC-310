@@ -71,11 +71,7 @@ As well, since we already have a project with Firebase, it allowed us to easily 
 
 ## About
 
-<<<<<<< HEAD
 Devleoped By: *Alex Rogov, Ahmad Raza Jamal, Florencia Chomski, Paul Zapote, Kshitij Suri*
-=======
-Devleoped By: *Ahmad Raza Jamal, Florencia Chomski, Alex Rogov, Paul Zapote, Kshitij Suri*
->>>>>>> f28b8506ac88640c77d6baa9ffa78f12b4ebbd57
 
 University of British Columbia | Software Engineering Course | 2020 Spring
 
