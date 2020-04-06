@@ -172,7 +172,6 @@ let socket = null
             let chatBotResponse = '';
             //Add user input
             this.createNewElement('responses','right','60%', this.message);
-            
             //Processing user's message --> chatbot response
             this.DialogFlowAPI(this.message).then(response =>  {
               chatBotResponse = response;
@@ -289,6 +288,30 @@ let socket = null
       });
     }
     },
+    sockets: {
+    connect() {
+      // Fired when the socket connects.
+      // this.isConnected = true;
+      console.log("Socket connection successful");
+    },
+
+    disconnect() {
+      this.isConnected = false;
+      console.log("Socket user disconnected");
+    },
+
+    // Fired when the server sends something on the "messageChannel" channel.
+    messageChannel(data) {
+      this.socketMessage = data
+    }
+  },
+
+  methods: {
+    pingServer() {
+      // Send the "pingServer" event to the server.
+      this.$socket.emit('pingServer', 'PING!')
+    }
+  }
 
   }
 </script>
