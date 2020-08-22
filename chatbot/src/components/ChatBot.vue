@@ -155,10 +155,6 @@ import axios from 'axios';
 //DialogFlow API
 const token = '9a9c43e5c3c54464ae93aeab97a93c22'    //Client Access token
 
-//Google Search API (Might use later -alex)
-const apiKey = "AIzaSyBxcOy7bBJkgC9QsRXMmR47l5DR90cG9uA"; //API key
-const cx = "008015703887553875666:rvmi3t7qwnf" //Google Engine ID
-
   export default {
     name: 'Chatbot',
     data() {
